@@ -45,16 +45,16 @@ toast.error(getError(err))
 
   return (
       <Layout title="KATIB - Login">
-<div className="h-full flex flex-col items-center justify-center gap-5 text-gray-600">
+<div className="min-h-screen h-max flex flex-col items-center justify-center py-2 gap-10 text-gray-600">
 <div className="flex flex-col items-center gap-2">
 <Image
  src="/img/cropped-logo.jpg"
       alt="KATIB LOGO"
       width={100}
       height={100}
-className="rounded-full bg-white p-1 shadow-md"
+className="rounded-full bg-zinc-100 p-1 shadow-md"
 />
-<h1 className="text-5xl font-semibold">KATIB</h1>
+<h1 className="text-5xl font-semibold play">KATIB</h1>
 <h3 className="text-xl font-semibold">Admin Panel</h3>
 </div>
 <form className="bg-zinc-200 px-4 py-3 w-4/5 sm:w-1/3 md:w-1/4 shadow-md h-fit rounded"
@@ -81,7 +81,7 @@ className="w-full"
 />
 {errors.password && <div className="text-red-500">{errors.password.message}</div>  }
 </div>
-<Link href="https://katib.in" legacyBehavior><a>Go to Katib<BsArrowRightShort className='inline'/></a></Link>
+<Link href="https://katib.in">Go to Katib<BsArrowRightShort className='inline'/></Link>
 <button className="primary-button block m-auto my-2">Login</button>
 </form>
 </div>

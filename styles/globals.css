@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@100;200;300;400;500;600;700&display=swap"); 
-
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -25,7 +25,7 @@
 body {
   max-width: 100vw;
   overflow-x: hidden;
-font-family: "Playfair Display", serif;
+font-family: 'Rubik', sans-serif;
 }
 
 .play {
@@ -57,4 +57,91 @@ select {
 }
 a{
 @apply text-blue-600 hover:text-blue-800
+}
+
+aside li{
+@apply py-2 px-2 hover:bg-zinc-100 text-zinc-100 hover:text-gray-600 font-semibold w-full
+}
+aside li a{
+@apply text-zinc-100 block
+}
+aside li:hover > a{
+@apply text-gray-600
+}
+aside:hover h1{
+display:inline;
+}
+aside:hover h3{
+display:inline;
+}
+aside:hover span{
+display:inline;
+}
+aside:hover img{
+@apply w-12
+}
+aside:hover li{
+@apply text-start
+}
+aside{
+min-width:max-content;
+width:14%
+}
+
+table,
+th,
+td {
+  padding: 1rem;
+  border-collapse: collapse;
+}
+th,
+td {
+  width: 2px;
+}
+thead th {
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: #d5d1defe;
+}
+tbody tr:nth-child(even) {
+  background-color: #0000000b;
+}
+tbody tr:hover {
+  background-color: #fff6;
+}
+.table_body {
+  @apply min-w-full max-h-full overflow-auto rounded bg-slate-200 text-gray-600 shadow-md mx-auto
+}
+table td a:hover{
+text-decoration:underline
+}
+.status-button{
+@apply p-2 text-white rounded-full min-w-full font-bold;
+width:7rem;
+}
+.featured{
+@apply hover:bg-green-700 bg-green-500 
+}
+.not-featured{
+@apply hover:bg-red-700 bg-red-500 
+}
+.disabled{
+@apply bg-zinc-400
+
+}
+.add-button{
+@apply py-1 px-2 rounded border-2 border-blue-500 hover:bg-blue-500 text-gray-600 hover:text-zinc-100
+}
+.post-card {
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.post-card:hover {
+  transform: scale(1.03);
+  /* filter: drop-shadow(-1px 38px 43px -20px rgba(0,0,0,0.29)); */
+  box-shadow: -1px 38px 43px -20px rgba(0, 0, 0, 0.08);
+}
+.img-link:hover > button{
+display:block;
 }

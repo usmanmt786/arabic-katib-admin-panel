@@ -19,3 +19,5 @@ const results = await db.query(query, values);
 catch (error) { 
    return { error };  
 }}
+
+
