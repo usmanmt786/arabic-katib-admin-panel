@@ -34,8 +34,8 @@ setOPtionStatus()
             <td className="text-center">{obj.cat_id}</td>
             <td className="text-center">{obj.cat_name}
 {optionStatus==index && <div className="text-sm mt-2" style={{color:'blue'}}>
-<Link href={`/admin/categories/edit/${obj.cat_link}`}
->Edit Category</Link> | <Link href={`https://katib.in/cat/${obj.cat_link}`}>View Category</Link>
+<Link href={`/categories/edit/${obj.cat_link}`}
+>Edit Category</Link> | <Link href={`https://katib.in/cat/${obj.cat_link}`} legacyBehavior><a target="_blank">View Category</a></Link>
 </div>}
 
 </td>

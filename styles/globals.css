@@ -145,3 +145,53 @@ width:7rem;
 .img-link:hover > button{
 display:block;
 }
+
+.multiple{
+ background-image: url(../public/img/downarrow.png);
+    background-position: right 5px center;
+    background-repeat: no-repeat;
+    background-size: 14px;
+
+}
+.validation-button{
+@apply text-white py-2 px-2 rounded ml-auto block;
+width:5rem;
+}
+.toPost{
+@apply hover:bg-green-800  bg-green-500
+}
+.toValidate{
+@apply hover:bg-red-800  bg-red-500
+}
+.card{
+@apply shadow-md rounded p-2 bg-gray-300;
+
+}
+.card h1{
+@apply text-2xl font-bold border-b-2 mb-1;
+height:2rem;
+}
+.card h1 + div{
+height:5rem;
+}
+.card h3{
+@apply text-xl font-bold 
+}
+.card h4{
+@apply  font-semibold
+}
+.card > div > div {
+@apply py-1 px-2 flex justify-between
+}
+.card a{
+@apply py-1 px-2 rounded text-zinc-100 hover:text-zinc-100 font-semibold
+}
+.card a:nth-child(1){
+@apply bg-gray-600 hover:bg-gray-500
+}
+.card a:nth-child(2){
+@apply bg-blue-500 hover:bg-blue-400
+}
+.card div:nth-child(3){
+@apply flex justify-between
+}

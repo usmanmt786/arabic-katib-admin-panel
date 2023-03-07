@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { AiFillHome,AiFillSetting } from 'react-icons/ai'
+import { AiFillHome } from 'react-icons/ai'
 import { BiCategory } from 'react-icons/bi'
 import { BsPinAngleFill } from 'react-icons/bs'
 import { FaUserTie } from 'react-icons/fa'
@@ -49,7 +49,7 @@ className="rounded-full bg-zinc-100 p-1 shadow-md w-8 md:w-12"
 </ul>
 </div>
 <ul>
-<li className="text-center md:text-start"><Link href="/settings"><AiFillSetting className="inline"/> <span className='hidden md:inline'>Settings</span></Link></li>
+
 <li className="text-center md:text-start cursor-pointer" onClick={logout}><GoSignOut className="inline"/> <span className='hidden md:inline'>Logout</span></li>
 </ul>
 </aside>
