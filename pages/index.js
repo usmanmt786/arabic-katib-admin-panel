@@ -1,8 +1,13 @@
 import Layout from '@/comps/Layout'
 import SideNav from '@/comps/SideNav'
-import Dashboard from '@/comps/Dashboard'
+import QuickLinks from '@/comps/QuickLinks'
 import excuteQuery from '@/utils/db'
-export default function Home({data}) {
+import AnalyticsTable from '@/comps/AnalyticsTable'
+
+export default function Home({data,allPosts}) {
+
+const posts=JSON.parse(allPosts)
+
   return (
       <Layout title="KATIB - Admin">
 <section className="flex">
@@ -13,8 +18,10 @@ export default function Home({data}) {
 
 </div>
 
-
-<Dashboard data={data}/>
+<div className="overflow-auto">
+<QuickLinks data={data}/>
+<AnalyticsTable  allPosts={posts}/>
+</div>
 
 </div>
 </section>
@@ -46,12 +53,15 @@ const subscriptions = await excuteQuery({
             query: "SELECT COUNT(subs_id) AS subscriptions FROM email_subscription",
 
         });
-        
-  console.log(posts)
+        const allPosts=await excuteQuery({
+            query: "SELECT * FROM posts",
+
+        });
+  
 return {
 
 props:{
-data:{posts:posts[0].posts,authors:authors[0].authors,categories:categories[0].categories,subscriptions:subscriptions[0].subscriptions}
+data:{posts:posts[0].posts,authors:authors[0].authors,categories:categories[0].categories,subscriptions:subscriptions[0].subscriptions,},allPosts:JSON.stringify(allPosts)
 }
 }
 }

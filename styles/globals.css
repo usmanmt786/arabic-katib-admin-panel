@@ -36,7 +36,7 @@ font-family: 'Rubik', sans-serif;
 }
 input[type="text"],
 input[type="number"],
-input[type="date"],
+
 input[type="time"],
 input[type="password"],
 textarea,
@@ -111,7 +111,7 @@ tbody tr:hover {
   background-color: #fff6;
 }
 .table_body {
-  @apply min-w-full max-h-full overflow-auto rounded bg-slate-200 text-gray-600 shadow-md mx-auto
+  @apply w-full max-h-full overflow-auto rounded bg-slate-200 text-gray-600 shadow-md mx-auto
 }
 table td a:hover{
 text-decoration:underline
@@ -194,4 +194,7 @@ height:5rem;
 }
 .card div:nth-child(3){
 @apply flex justify-between
+}
+input[type="date"]{
+@apply p-1 border-2 rounded
 }
