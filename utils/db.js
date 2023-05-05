@@ -1,5 +1,6 @@
 import mysql from 'serverless-mysql';
 
+
 const db = mysql({  
 config: {    
    host: process.env.MYSQL_HOST,    
