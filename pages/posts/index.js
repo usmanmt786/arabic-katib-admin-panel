@@ -14,7 +14,7 @@ obj.post_addedOn=new Date(obj.post_addedOn).toLocaleDateString()
 
 if(obj.cat_name) obj.cat_name=obj.cat_name.replace(/,/g, ", ")
 })
-},[])
+},[posts])
   return (
       <Layout title="KATIB - Posts ">
 <section className="flex">
