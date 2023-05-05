@@ -11,15 +11,15 @@
   margin: 0;
 }
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #eefbfb;
+  background: #f5f7fa;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #225151;
+  background: #a9afb8;
 }
 
 body {

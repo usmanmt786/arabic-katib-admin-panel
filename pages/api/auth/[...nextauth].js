@@ -25,22 +25,22 @@ try {
             query: 'SELECT * FROM users WHERE BINARY user_username = ?',
             values: [ credentials.username ],
         });
-        return result[0];
+        if(result && credentials.password == result[0].user_password){
+
+return {
+id: result[0].user_id,
+name:result[0].user_username,
+email:result[0].user_email,
+displayName:result[0].user_displayName
+}
+}
+throw new Error('Invalid user or password');
     } catch (error) {
         console.log(error);
     }
 
 
-if(result && credentials.password == result.user_password){
 
-return {
-id: result.user_id,
-name:result.user_username,
-email:result.user_email,
-displayName:result.user_displayName
-}
-}
-throw new Error('Invalid email or password')
 }
 })
 ]
