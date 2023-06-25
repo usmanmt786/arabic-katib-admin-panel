@@ -70,6 +70,7 @@ disabled={Object.keys(selected).length !== 0 ? false :true}
 onClick={()=>{
 action(`https://api.katib.in/uploads/${selected.name}`)
 setFileName(selected.name)
+document.body.style.overflow="scroll"
 setGallery(false)
 }}
 >Confirm</button>
