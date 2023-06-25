@@ -1,4 +1,4 @@
-⁰import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect} from 'react'
 import {AiFillCloseCircle} from 'react-icons/ai'
 import getUploads from '@/utils/getUploads'
 import {TiTick} from 'react-icons/ti'
@@ -15,10 +15,8 @@ setLoading(true)
 try{
 const response=await getUploads()
 if(response && response.success){
-         
 setImages(response.images)
 setLoading(false)
-         
 }else{
 alert("Image not collected")
 setLoading(false)
