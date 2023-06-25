@@ -230,9 +230,10 @@ float:right
 .css-1nmdiq5-menu{
 z-index:3 !important;
 }
-#body .para,.strong{
-@apply text-lg p-2 block  relative
+#body .para{
+@apply text-lg p-2 w-full resize-none overflow-hidden  
 }
+
 
 .controls {
 @apply p-1 rounded bg-zinc-300 text-lg block hover:bg-zinc-400 active:bg-zinc-400 text-zinc-600
@@ -242,11 +243,7 @@ z-index:3 !important;
 @apply border-2 border-blue-500
 }
 
-.placeholder::after{
-content:"Start writing here...";
-opacity:"1";
-font-size:"3px" !important;
-}
+
 #body .figure img{
 @apply rounded w-3/4 block m-auto
 }
@@ -254,11 +251,9 @@ font-size:"3px" !important;
 @apply rounded p-1 bg-zinc-100 relative py-5 mb-1
 }
 
-.active{
-@apply border-2 border-blue-200
-}
+
 .cont{
-@apply relative py-5 bg-zinc-100 p-1 mb-1 rounded 
+@apply relative py-6 bg-zinc-100 p-1 mb-1 rounded 
 }
 .add button{
 @apply p-1 bg-zinc-200 text-zinc-600 rounded text-lg hover:bg-zinc-300 active:bg-zinc-300

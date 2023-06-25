@@ -43,30 +43,22 @@ action(value.filter((obj,index)=>index!==item.index))
 
 
   return (
-   item.type==='para' ? (<div className="cont" onMouseOver={()=>setDel(true)} onMouseLeave={()=>{setDel(false)
+  <div className="cont" onMouseOver={()=>setDel(true)} onMouseLeave={()=>{setDel(false)
 setAdd(false)
 }}>
 {del && <button className="text-zinc-700 absolute right-1 top-1 block" onClick={handleDelete}><RiDeleteBin6Fill/></button>}
-<p contentEditable="true" onBlur={handleBlur}
-onFocus={handleFocus}
-onInput={handleInput}
-
-className={`para ${placeholder && 'placeholder'} ${!active ? 'active' : ''}`}
+<textarea
+Placeholder="Add paragraph..."
+className={`para ${item.type==='sub' && 'font-bold'}`}
+rows="1"
+onChange={(e)=>{
+e.target.style.height='auto'
+e.target.style.height=`${e.target.scrollHeight}px`
+}}
 >
+
 {item.value && parse(item.value) }
-</p>{del && <button className="text-zinc-700 absolute right-1 bottom-1 block" onClick={()=>setAdd(!add)}><IoMdAddCircle/></button>} {add && del && (<AddSpan index={item.index} action={action} value={value} />)}</div>) :  (<div className="cont" onMouseOver={()=>setDel(true)} onMouseLeave={()=>{setDel(false)
-setAdd(false)
-
-}}>
-{del && <button className="text-zinc-700 absolute right-1 top-1 block" onClick={handleDelete}><RiDeleteBin6Fill/></button>}
-<strong contentEditable="true"  onBlur={handleBlur}
-onFocus={handleFocus}
-onInput={handleInput}
-
-className={`strong ${placeholder && 'placeholder'} ${!active ? 'active' : ''}`}
->
-{item.value && parse(item.value)}
-</strong>{del && <button className="text-zinc-700 absolute right-1 bottom-1 block" onClick={()=>setAdd(!add)}><IoMdAddCircle/></button>}{add && del && (<AddSpan index={item.index} action={action} value={value} />)}</div>)
+</textarea>{del && <button className="text-zinc-700 absolute right-1 bottom-1 block" onClick={()=>setAdd(!add)}><IoMdAddCircle/></button>} {add && del && (<AddSpan index={item.index} action={action} value={value} />)}</div>
 
  
   );
