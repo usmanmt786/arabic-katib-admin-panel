@@ -13,10 +13,10 @@ const getImages=async ()=>{
 setLoading(true)
 try{
 const response=await getUploads()
-if(response){
-alert(response)
-//setImages(response.images)
-//setLoading(false)
+if(response && response.success){
+
+setImages(response.images)
+setLoading(false)
 }else{
 alert('Failed')
 setLoading(false)
