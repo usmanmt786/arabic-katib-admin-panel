@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import {BsSearch} from "react-icons/bs";
 
 function PostsSearch({data,query,setQuery,setSearchState,searchResults,setSearchResults}) {
-console.log(data)
+
 useEffect(()=>{
 if(query!=""){
 setSearchState(true)

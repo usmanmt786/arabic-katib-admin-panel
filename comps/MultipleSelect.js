@@ -1,59 +1,79 @@
 import React ,{useState} from 'react'
-import {RiCloseFill} from 'react-icons/ri';
+import Select from 'react-select'
 
-function MultipleSelect({label,categories,value,action,id,catNames,setCatNames,setValidation}) {
+const customStyles = {
+  control: (provided,state) => ({
+    ...provided,
+    border: state.isFocused ? '2px solid #60A5FA' : '2px solid #D1D5DB',
+outline:'none',
+    borderRadius: '4px',
+    padding: '5px',
+minHeight: '100px',
 
+ '&:hover': {
+      border: state.isFocused ? '2px solid #60A5FA' : '2px solid #D1D5DB',
+cursor:'pointer'
+    },
 
-const [cats,setCats]=useState(categories)
-const [catDrop,setCatDrop]=useState(false)
+  }),
+  option: (provided, state) => ({
+    ...provided,
+zIndex:2,
+    backgroundColor: state.isSelected ? 'blue' : 'white',
+    color: state.isSelected ? 'white' : 'black',
+  }),
+};
 
-console.log(id,catNames)
-const catAdd=(obj)=>{
+function MultipleSelect({label,content,value,action,id,setValidation,type}) {
+const options=[]
+const oldValue=[]
+content.map((obj)=>{
+options.push({
+value:type==="post" ? obj.post_id : obj.cat_id,
+label:type==="post" ? obj.post_title : obj.cat_name
+})
+})
 
-action(cat=>[...cat,obj.cat_id])
-setCatNames(cat=>[...cat,{...obj}])
-setCats(cats.filter(item=>item.cat_id!==obj.cat_id))
-setValidation()
+if(value.length!=0){
+
+value.map((obj)=>{
+options.map((item)=>{
+if(type==='post'){ if(obj.post_id === item.value){
+oldValue.push(item)
+}}else{
+ if(obj.cat_id === item.value){
+oldValue.push(item)
 }
-const catRemove=(obj)=>{
-action(value.filter(item=>item!==obj.cat_id))
-setCatNames(catNames.filter(item=>item.cat_name!==obj.cat_name))
-setCats(cats=>[obj,...cats])
-setValidation()
 }
+
+})
+})
+}
+
+  const handleSelectChange = (selectedOptions) => {
+    action(selectedOptions); 
+setValidation()
+
+  };
+
   return (
    
- <div className="flex flex-col gap-3">
-            <label for={id} className="w-2/6">
+ <div className="flex flex-col gap-2">
+            <label htmlFor={id} className="w-full">
               {label}:
             </label>
-            <div className="relative w-full">
-             <div
-              
-              id={id}
-              style={{height:'4rem'}}
-              className="w-full  p-1 pr-4 overflow-auto border-2 rounded multiple cursor-pointer"
-              onClick={() => {
-                setCatDrop(!catDrop);
+     <Select
 
-              }}
-             
-            >
-              {catNames && catNames.map((obj)=>(<span className="inline-block w-max p-1 mr-1 mb-1 text-sm rounded" style={{background:"#bdb8b8"}}>{obj.cat_name}<RiCloseFill className="inline ml-3" onClick={()=>{
-catRemove(obj)
-}}/></span>))}
-            </div>
-{catDrop && <div style={{zIndex:"2",background:"#bdb8b8",height:"8rem"}} className="overflow-auto p text-gray-600 text-sm noto shadow-md rounded absolute right-0" onMouseLeave={()=>{
-setCatDrop(false)
+        options={options}
+        isMulti
+        id={id}
+defaultValue={oldValue}
+        onChange={handleSelectChange}
+styles={customStyles}
+      />
 
-}}>
-<ul>
-{cats.map((obj,index)=>(<li id={obj.cat_name} className=" p-1 cursor-pointer hover:bg-white" onClick={()=>{
-catAdd(obj,index)
-}}>{obj.cat_name}</li>))}
-</ul>
-</div>}
-     </div>
+            
+    
           </div>
   )
 }

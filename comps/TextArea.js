@@ -1,7 +1,7 @@
 import React from 'react'
 import {VscTriangleLeft} from "react-icons/vsc";
 
-function TextArea({label,error,value,action,state,id,rows,span,trngle,height,setValidation}) {
+function TextArea({label,error,value,action,state,id,rows,span,trngle,height,setValidation,length}) {
 
   return (
 
@@ -21,11 +21,12 @@ function TextArea({label,error,value,action,state,id,rows,span,trngle,height,set
                 className="text-red-500 absolute top-1 trngle"
               />
             )}
-            <label for={id}>{label}:</label>
+            <label htmlFor={id}>{label}:</label>
             <textarea
               style={height ? { padding: "4px", resize: "none" , height:'100%'} : { padding: "4px", resize: "none" }}
               id={id}
               rows={rows}
+maxLength={length ? length :""}
               className="w-full"
               onChange={(e) => {
 
@@ -33,6 +34,7 @@ function TextArea({label,error,value,action,state,id,rows,span,trngle,height,set
 setValidation()
               }}
               disabled={state}
+
             >
               {value}
             </textarea>

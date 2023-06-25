@@ -1,0 +1,97 @@
+import React,{useState} from 'react'
+import {VscTriangleLeft} from "react-icons/vsc";
+import parse from 'html-react-parser';
+import {addPara} from '@/utils/postBodyMethods'
+import { BsParagraph } from 'react-icons/bs';
+import {BiHeading,BiImageAdd} from 'react-icons/bi';
+import {MdOutlineSaveAlt} from 'react-icons/md'
+
+function PostBody({error,value,action,state,setValidation}) {
+
+const reactElements = parse(value);
+const [content,setContent]=useState([])
+const [active,setActive]=useState('')
+  return (
+
+                  <div className="h-full flex flex-col gap-1 relative ">
+            {error && (
+              <span
+                style={{ left: "5.1rem", zIndex: "1" }}
+                className="block top-0 p-1 text-sm absolute shadow bg-red-500 text-white rounded"
+              >
+                {error}
+              </span>
+            )}
+            {error && (
+              <VscTriangleLeft
+                style={{ left: "4.5rem", zIndex: "1" }}
+                className="text-red-500 absolute top-1 "
+              />
+            )}
+            <label htmlFor="body">Post body:</label>
+
+<div className="p-2 bg-zinc-200 rounded flex justify-end  gap-2">
+<button className="controls" onClick={(e)=>{
+e.preventDefault()
+setContent([...content,'para'])
+}}>
+<BsParagraph/>
+</button>
+<button className="controls" onClick={(e)=>{
+e.preventDefault()
+setContent([...content,'sub'])
+}}>
+<BiHeading/>
+</button>
+<button className="controls" onClick={(e)=>{
+e.preventDefault()
+setContent([...content,'image'])
+}}>
+<BiImageAdd/>
+</button>
+<button className="br controls font-semibold" onClick={(e)=>{
+e.preventDefault()
+setContent([...content,'br'])
+}}>
+&lt;br&gt;
+</button>
+<button className="ml-3 p-2 bg-red-600 rounded-full text-white text-lg hover:bg-red-500 active:bg-red-500">
+<MdOutlineSaveAlt/>
+</button>
+</div>
+            <div
+              id="body"
+              
+              className={`border-2 rounded  focus:z-10 sm:text-sm focus:border-blue-400 border-gray-300 p-2   text-lg noto  w-full h-screen md:h-full  overflow-auto ${active}`}
+             
+              onBlur={() => {
+                action(document.getElementById('body').innerHTML)
+setActive('')
+
+              }}
+onClick={()=>setActive('active')}
+              
+            >
+             {content.length!=0 && content.map((item,index)=>{
+if(item==='para'){
+return (<p contenteditable="true" className="border"></p>)
+} else if(item==='br'){
+return (<br/>)
+}
+})}
+            </div>
+
+          </div>
+  )
+}
+
+export default PostBody
+
+
+
+
+
+
+
+
+ 

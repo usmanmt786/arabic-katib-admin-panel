@@ -35,7 +35,7 @@ password,
  })
 if(result.error){
 console.log(result)
-toast.error(result.error)
+toast.error('Invalid user or password')
 }
 }catch (err){
 console.log(err)

@@ -39,13 +39,13 @@ className="rounded-full bg-zinc-100 p-1 shadow-md w-8 md:w-12"
 </div>
 </Link>
 <ul className="navOptions">
-<li className="text-center md:text-start"><Link href="/"><AiFillHome className="inline"/> <span className='hidden md:inline'>Home</span></Link></li>
-<li className="text-center md:text-start"><Link href="/posts"><BsPinAngleFill className="inline"/> <span className='hidden md:inline'>Posts</span></Link></li>
-<li className="text-center md:text-start"><Link href="/authors"><FaUserTie className="inline"/> <span className='hidden md:inline'>Authors</span></Link></li>
-<li className="text-center md:text-start"><Link href="/categories"><BiCategory className="inline"/> <span className='hidden md:inline'>Categories</span></Link></li>
-<li className="text-center md:text-start"><Link href="/subscriptions"><IoMdMail className="inline"/> <span className='hidden md:inline'>Subscriptions</span></Link></li>
-<li className="text-center md:text-start"><Link href="/media"><MdPermMedia className="inline"/> <span className='hidden md:inline'>Media</span></Link></li>
-<li className="text-center md:text-start"><Link href="/comments"><MdModeComment className="inline"/> <span className='hidden md:inline'>Comments</span></Link></li>
+<li className="text-center md:text-start"><Link href="/"><AiFillHome className="inline align-sub"/> <span className='hidden md:inline'>Home</span></Link></li>
+<li className="text-center md:text-start"><Link href="/posts"><BsPinAngleFill className="inline align-sub"/> <span className='hidden md:inline'>Posts</span></Link></li>
+<li className="text-center md:text-start"><Link href="/authors"><FaUserTie className="inline align-baseline"/> <span className='hidden md:inline'>Authors</span></Link></li>
+<li className="text-center md:text-start"><Link href="/categories"><BiCategory className="inline align-sub"/> <span className='hidden md:inline'>Categories</span></Link></li>
+<li className="text-center md:text-start"><Link href="/subscriptions"><IoMdMail className="inline align-sub"/> <span className='hidden md:inline'>Subscriptions</span></Link></li>
+<li className="text-center md:text-start"><Link href="/media"><MdPermMedia className="inline align-sub"/> <span className='hidden md:inline'>Media</span></Link></li>
+<li className="text-center md:text-start"><Link href="/#"><MdModeComment className="inline sub"/> <span className='hidden md:inline'>Comments</span></Link></li>
 </ul>
 </div>
 <ul>

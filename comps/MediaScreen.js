@@ -64,8 +64,8 @@ document.body.style.overflow = "";
            </div>
 <div className="w-full  p-3 md:w-1/3 md:h-full  bg-white flex flex-col justify-between">
 <div>
-<div className="mb-3">Post: <a href={`https:katib.in/${image.post_link}`}  className="hover:underline cursor-pointer noto" target="_blank">{image.post_title}</a></div>
-<div className="mb-3">Author: <a className=" hover:underline cursor-pointer noto">{image.author_name}</a></div>
+<div className="mb-3">Post: <a href={`https://katib.in/${image.post_link}`}  className="hover:underline cursor-pointer noto" target="_blank">{image.post_title}</a></div>
+<div className="mb-3">Author: <a href="#"className=" hover:underline cursor-pointer noto">{image.author_name}</a></div>
 <div>Type: <span>{image.type}</span></div>
 </div>
 <div className="">

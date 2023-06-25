@@ -29,6 +29,9 @@ body {
   overflow-x: hidden;
 font-family: 'Rubik', sans-serif;
 }
+.rubik{
+font-family: 'Rubik', sans-serif;
+}
 
 .play {
   font-family: "Playfair Display", serif;
@@ -43,7 +46,7 @@ input[type="time"],
 input[type="password"],
 textarea,
 select {
-  @apply appearance-none rounded relative block  px-3 py-2 border-2 border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none  focus:z-10 sm:text-sm;
+  @apply appearance-none rounded relative block  px-3 py-2 border-2 border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none  focus:z-10 sm:text-sm focus:border-blue-400;
 }
 .primary-button{
 @apply rounded bg-slate-300 py-2 px-4 shadow outline-none hover:bg-slate-400 active:bg-slate-500
@@ -148,13 +151,7 @@ width:7rem;
 display:block;
 }
 
-.multiple{
- background-image: url(../public/img/downarrow.png);
-    background-position: right 5px center;
-    background-repeat: no-repeat;
-    background-size: 14px;
 
-}
 .validation-button{
 @apply text-white py-2 px-2 rounded ml-auto block;
 width:5rem;
@@ -200,3 +197,70 @@ height:5rem;
 input[type="date"]{
 @apply p-1 border-2 rounded
 }
+.file-upload {
+  font-family: Arial, sans-serif;
+}
+
+.file-upload__input {
+  display: flex;
+flex-direction:column;
+  align-items: center;
+  gap: 5px;
+}
+
+.file-upload__input input[type="text"] {
+  width:100%;
+}
+.file-upload__input button {
+  padding: 8px 12px;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+float:right
+}
+
+.file-upload__input input[type="file"] {
+  display: none;
+}
+.upload{
+@apply text-white rounded w-full py-2 px-3 mt-1 
+}
+
+.css-1nmdiq5-menu{
+z-index:3 !important;
+}
+#body .para,.strong{
+@apply text-lg p-2 block  relative
+}
+
+.controls {
+@apply p-1 rounded bg-zinc-300 text-lg block hover:bg-zinc-400 active:bg-zinc-400 text-zinc-600
+}
+
+#body.active{
+@apply border-2 border-blue-500
+}
+
+.placeholder::after{
+content:"Start writing here...";
+opacity:"1";
+font-size:"3px" !important;
+}
+#body .figure img{
+@apply rounded w-3/4 block m-auto
+}
+#body .figure{
+@apply rounded p-1 bg-zinc-100 relative py-5 mb-1
+}
+
+.active{
+@apply border-2 border-blue-200
+}
+.cont{
+@apply relative py-5 bg-zinc-100 p-1 mb-1 rounded 
+}
+.add button{
+@apply p-1 bg-zinc-200 text-zinc-600 rounded text-lg hover:bg-zinc-300 active:bg-zinc-300
+} 
+

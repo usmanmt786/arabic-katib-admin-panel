@@ -2,11 +2,17 @@ export const postFormValidate = (formData,setValidation,setErrors,setState,setCa
 let errors={}
 let blankMsg="Field should be filled..!"
 let selectMsg="Selection mandatory..!"
+let uploadMsg="Image should be uploaded..!"
+let imageMsg="Image Mandatory..!"
    if(formData.title==''){
 errors.title=blankMsg
 }
 if(formData.body==''){
+if(document.getElementById('body').innerHTML!==''){
+errors.body="Content should be saved..!"
+}else{
 errors.body=blankMsg
+}
 }
 if(formData.type==''){
 errors.type=selectMsg
@@ -14,19 +20,15 @@ errors.type=selectMsg
 if(formData.author==''){
 errors.author=selectMsg
 }
-if(formData.thumb==''){
-errors.thumb=blankMsg
-}else if(!formData.thumb.includes('://wp.katib.in/wp-content/uploads/')){
-errors.thumb="Add valid link..!"
-}else if(!formData.thumb.includes('https')){
-errors.thumb="'https' is mandatory..!"
+if(formData.thumb===''){
+errors.thumb=imageMsg
+}else if(typeof(formData.thumb)==='object'){
+errors.thumb=uploadMsg
 }
-if(formData.seoThumb==''){
-errors.seoThumb=blankMsg
-}else if(!formData.seoThumb.includes('://wp.katib.in/wp-content/uploads/')){
-errors.seoThumb="Add valid link..!"
-}else if(!formData.seoThumb.includes('https')){
-errors.seoThumb="'https' is mandatory..!"
+if(formData.seoThumb===''){
+errors.seoThumb=imageMsg
+}else if(typeof(formData.thumb)==='object'){
+errors.thumb=uploadMsg
 }
 if(formData.postLink==''){
 errors.postLink=blankMsg
@@ -38,6 +40,7 @@ errors.excerpt=blankMsg
 if(Object.keys(errors).length === 0){
 setValidation('success')
 setState('')
+setErrors({})
 }else {
 setErrors(errors)
 setState('')
