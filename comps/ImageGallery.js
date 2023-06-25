@@ -53,14 +53,14 @@ setSelected(image)
 </div>
 ))}
 </div>
-<div className="md:w-1/4 w-full bg-zinc-200 rounded-b h-full flex md:flex-col justify-between items-center p-2">
+<div className="md:w-1/4 w-full bg-zinc-200 rounded-b h-full flex flex-col justify-between items-center p-2">
 {Object.keys(selected).length === 0 ? <h3 className="text-lg text-center py-5 rubik text-zinc-400">Select Image
 </h3>:<div className="rubik font-semibold flex flex-col gap-2">
-<div className="flex flex-col md:flex-row gap-1">
+<div className="flex gap-1">
 <h4>Name:</h4>
 <h4 className="whitespace-normal break-all">{selected.name}</h4>
 </div>
-<div className="flex gap-1 flex-col md:flex-row">
+<div className="flex gap-1">
 <h4>Size:</h4>
 <h4>{Math.round(selected.size/1024)} kbs</h4>
 </div>
@@ -69,7 +69,7 @@ setSelected(image)
 <button className={`px-3 py-2 text-zinc-100 rounded rubik font-semibold w-1/2 ${Object.keys(selected).length !== 0 ? 'bg-green-500 hover:bg-green-600' : 'bg-zinc-600'}`}
 disabled={Object.keys(selected).length !== 0 ? false :true}
 onClick={()=>{
-action(`http://localhost:80/katib/uploads/${selected.name}`)
+action(`https://api.katib.in/uploads/${selected.name}`)
 setFileName(selected.name)
 setGallery(false)
 }}
