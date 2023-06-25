@@ -14,7 +14,7 @@ style={{width:'5rem'}}
               onClick={async () => {
                 setValidation("loading");
                 setState("disabled");
-
+console.log(formData)
                 await validate(
                   formData,
                   setValidation,
@@ -37,10 +37,25 @@ style={{width:'5rem'}}
 style={{width:'5rem'}}
 disabled={state}
               onClick={async () => {
-if(formData.category){formData.category=formData.category.toString()}
+if(formData.category.length!=0){
+let tempCats=''
+formData.category.map((item)=>{
+tempCats=tempCats==''?item.value : tempCats+`,${item.value}`
+})
+formData.category=tempCats
+}else formData.category=''
+if(formData.nexts.length!=0){
+let tempNexts=''
+formData.nexts.map((item)=>{
+tempNexts=tempNexts==''?item.value : tempNexts+`,${item.value}`
+})
+formData.nexts=tempNexts
+
+}else formData.nexts=''
                 setValidation("posting");
                 setState("disabled");
-                let status = await add(formData);
+
+               let status = await add(formData);
 
                 if(status.success){
 alert(status.success)

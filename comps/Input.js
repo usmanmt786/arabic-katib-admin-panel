@@ -1,7 +1,7 @@
 import React  from 'react'
 import {RiCloseFill} from 'react-icons/ri';
 import {VscTriangleLeft} from "react-icons/vsc";
-function Input({label,error,value,action,state,span,trngle,img,id,setValidation}) {
+function Input({label,error,value,action,state,span,trngle,id,setValidation}) {
 
 
   return (
@@ -21,7 +21,7 @@ function Input({label,error,value,action,state,span,trngle,img,id,setValidation}
                 className="text-red-500 absolute top-1 trngle"
               />
             )}
-            <label for={id}>{label}:</label>
+            <label htmlFor={id}>{label}:</label>
             <input
               style={{ padding: "4px" }}
               id={id}
@@ -34,13 +34,7 @@ setValidation()
               }}
               disabled={state}
             />
- {value != "" && img && (
-              <img
-                src={value}
-                className="text-red-500 rounded w-full"
-                alt="Check your link..!"
-              />
-            )}
+ 
           </div>
          
   )

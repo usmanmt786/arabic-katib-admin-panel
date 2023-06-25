@@ -5,10 +5,11 @@ function CheckBox({label,value,action,state,id,setValidation}) {
 
   return (
 <div className="flex gap-3">
-        <label for={id} className="w-2/6">
+        <label htmlor={id} className="w-2/6">
               {label}:
             </label>
             <input
+style={{cursor:'pointer'}}
 checked={value==1 ? "checked" : ''}
               id={id}
               type="checkbox"

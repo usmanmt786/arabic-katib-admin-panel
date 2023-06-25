@@ -2,11 +2,16 @@ import mysql from 'serverless-mysql';
 
 const db = mysql({  
 config: {    
-   host: process.env.MYSQL_HOST,    
-    port: process.env.MYSQL_PORT,
-    database: process.env.MYSQL_DATABASE,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD
+   //host: process.env.MYSQL_HOST,
+host:'localhost',    
+    //port: process.env.MYSQL_PORT,
+port:3307,
+    //database: process.env.MYSQL_DATABASE,
+database:'katib',
+    //user: process.env.MYSQL_USER,
+user:'Usmanmt786',
+    //password: process.env.MYSQL_PASSWORD
+password:'usman@786'
 }});
 
 export default async function excuteQuery({ query, values }) {  

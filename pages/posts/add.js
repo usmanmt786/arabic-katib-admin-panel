@@ -3,8 +3,20 @@ import SideNav from '@/comps/SideNav'
 import Link from 'next/link'
 import AddPostForm from '@/comps/AddPostForm'
 import excuteQuery from '@/utils/db'
-
+import axios from 'axios'
+import {useEffect,useState} from 'react'
 export default function AddPostPage({data}) {
+const [posts,setPosts] = useState([])
+useEffect(()=>{
+const getPosts=async ()=>{
+const data=await axios.post('/api/posts')
+setPosts(data.data)
+
+}
+getPosts()
+ 
+},[posts])
+
 const authors=JSON.parse(data.authors)
 const categories=JSON.parse(data.categories)
 
@@ -18,7 +30,7 @@ const categories=JSON.parse(data.categories)
 
 </div>
 
-<AddPostForm authors={authors} categories={categories}/>
+<AddPostForm authors={authors} categories={categories} posts={posts}/>
 
 
 </div>
@@ -31,7 +43,6 @@ AddPostPage.auth=true
 
 
 export async function getServerSideProps(){
-
 
         const authors = await excuteQuery({
             query: 'SELECT * FROM authors'

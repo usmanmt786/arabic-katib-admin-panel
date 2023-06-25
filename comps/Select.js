@@ -6,7 +6,7 @@ const postTypes=[{name:'Post',value:'post'},{name:'Fiction',value:'fiction'},{na
   return (
    
  <div className="flex gap-3 relative">
-            <label for={id} className="w-2/6">
+            <label htmlFor={id} className="w-2/6">
               {label}:
             </label>
             {error && (
@@ -27,7 +27,7 @@ const postTypes=[{name:'Post',value:'post'},{name:'Fiction',value:'fiction'},{na
               id={id}
               value={value}
               style={{ WebkitAppearance: "menulist" }}
-              className="w-4/6 bg-white relative  p-1"
+              className="w-4/6 bg-white relative  p-1 cursor-pointer"
               onChange={(e) => {
                 action(e.target.value);
 setValidation()

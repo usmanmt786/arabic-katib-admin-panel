@@ -7,7 +7,7 @@ import {
   VscTriangleUp,
 } from "react-icons/vsc";
 import FileUpload from '@/comps/FileUpload'
-import PostBody from '@/comps/PostBody'
+
 import MultipleSelect from '@/comps/MultipleSelect'
 import Select from '@/comps/Select'
 import Input from '@/comps/Input'
@@ -107,7 +107,36 @@ setValidation()
               {title}
             </textarea>
           </div>
-          <PostBody value={body} action={setBody} setValidation={setValidation} state={state} error={errors.body}/>
+          <div className="h-full flex flex-col gap-1 relative ">
+            {errors.body && (
+              <span
+                style={{ left: "5.1rem", zIndex: "1" }}
+                className="block top-0 p-1 text-sm absolute shadow bg-red-500 text-white rounded"
+              >
+                {errors.body}
+              </span>
+            )}
+            {errors.body && (
+              <VscTriangleLeft
+                style={{ left: "4.5rem", zIndex: "1" }}
+                className="text-red-500 absolute top-1 "
+              />
+            )}
+            <label htmlFor="body">Post body:</label>
+            <textarea
+              id="body"
+              style={{ resize: "none" }}
+              className="  block text-lg noto  w-full h-screen md:h-full  overflow-auto"
+              placeholder="Add body"
+              onChange={(e) => {
+                setBody(e.target.value);
+setValidation()
+              }}
+              disabled={state}
+            >
+              {body}
+            </textarea>
+          </div>
         </div>
         <div className="bg-white w-full  md:h-full min-h-screen  md:w-3/12 rounded shadow-md overflow-auto p-2 flex flex-col gap-2">
           <div className="text-2xl">Details</div>
