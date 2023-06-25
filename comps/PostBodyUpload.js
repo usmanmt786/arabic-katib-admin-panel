@@ -48,7 +48,7 @@ try{
     const response = await uploadImage({fileName,image:image})
 
     if(response.success){
-setImage(`http://localhost:80/katib/uploads/${response.name}`)
+setImage(`https://api.katib.in/uploads/${response.name}`)
 setFileName(response.name)
 alert(response.success)
 setUploading('not-selected')

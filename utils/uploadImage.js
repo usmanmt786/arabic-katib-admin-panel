@@ -2,7 +2,7 @@
 
 
 const uploadImage = async(data)=>{
-    const finalUrl = "http://localhost:80/katib/admin/uploadImage.php";
+    const finalUrl = "https://api.katib.in/uploadImage.php";
      
 const formData = new FormData();
     formData.append('api', "408d2cb02089a93e8a3df817ffb521415e5a6b5d");
