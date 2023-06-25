@@ -2,6 +2,7 @@
 import {AiFillCloseCircle} from 'react-icons/ai'
 import getUploads from '@/utils/getUploads'
 import {TiTick} from 'react-icons/ti'
+
 function ImageGallery({setGallery,action,setFileName}){
 
 const [images,setImages]=useState([])
