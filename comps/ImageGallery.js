@@ -38,6 +38,7 @@ return(
 <div className="rounded-t p-1 bg-zinc-200 flex justify-between">
 <h4 className="text-xl text-zinc-500 rubik font-semibold">Image Gallery</h4>
 <AiFillCloseCircle className="text-2xl text-zinc-500 hover:text-zinc-600 cursor-pointer active:text-zinc-600" onClick={()=>{
+document.body.style.overflow="auto"
 setGallery(false)
 }}/>
 </div>
