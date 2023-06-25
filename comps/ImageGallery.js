@@ -14,9 +14,9 @@ setLoading(true)
 try{
 const response=await getUploads()
 if(response && response.success){
-
-setImages(response.images)
-setLoading(false)
+alert(response.success[0])
+//setImages(response.images)
+//setLoading(false)
 }else{
 alert('Failed')
 setLoading(false)
