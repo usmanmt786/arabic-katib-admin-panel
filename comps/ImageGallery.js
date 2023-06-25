@@ -48,7 +48,7 @@ setGallery(false)
 setSelected(image)
 }}>
 {selected.name===image.name&&<TiTick className="bg-blue-400 text-white rounded-full absolute top-0 right-0"/>}
-<img className="flex align-center text-center text-kred-500 h-full w-full"src={`http://localhost:80/katib/uploads/${image.name}`} alt="Image not found..!"/>
+<img className="flex align-center text-center text-kred-500 h-full w-full"src={`https://api.katib.in/uploads/${image.name}`} alt="Image not found..!"/>
 </div>
 ))}
 </div>
