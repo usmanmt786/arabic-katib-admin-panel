@@ -5,7 +5,6 @@ import AddSpan from '@/comps/AddSpan'
 import {IoMdAddCircle} from 'react-icons/io'
 import {MdModeEdit} from 'react-icons/md'
 import ImageGallery from '@/comps/ImageGallery'
-import parse from 'html-react-parser'
 function PostBodyUpload({item,setImageUpload,value,action}) {
 
 const [add,setAdd]=useState(false)
@@ -71,18 +70,18 @@ action(value.filter((obj,index)=>index!==item.index))
 
 }
   return (
-!save ? <><div className="flex flex-col gap-1 relative p-10 my-1 rounded border-2 border-blue-200 relative bg-zinc-100" onMouseOver={()=>setDel(true)} onMouseOut={()=>setDel(false)}>
+!save ? <><div className="flex flex-col gap-1 relative p-5 md:p-10 my-1 rounded border-2 border-blue-200 relative bg-zinc-100" onMouseOver={()=>setDel(true)} onMouseOut={()=>setDel(false)}>
 {del &&<button className="text-zinc-700 absolute right-1 top-1 cursor-pointer" onClick={handleDelete}><RiDeleteBin6Fill/></button>}
 {uploading==='selected' || image!==''  ?(
               <img
                 src={uploading==='selected' ?URL.createObjectURL(image):image}
-                className="text-red-500 rounded w-1/2 block m-auto"
+                className="text-red-500 rounded w-full md:w-3/4 block m-auto"
                 alt="Try with another"
               />
             ): null}
 
          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-    <div className="w-full m-auto">
+    <div className="md:w-3/4 w-full m-auto">
       <div className="file-upload__input ">
         <input
           type="text"
@@ -92,7 +91,7 @@ action(value.filter((obj,index)=>index!==item.index))
 disabled={uploading === 'selected' ? false : true }
 
         />
-<div className="flex flex-col justify-between w-1/2 gap-1">
+<div className="flex flex-col justify-between w-full md:w-1/2 gap-1">
 <div className="flex gap-4">
 <button onClick={()=>{
 document.body.style.overflow = "hidden";
@@ -134,10 +133,9 @@ setAdd(false)
 }}
 className="figure"
 >
-
+<img src={image} alt={fileName}/>
 {del &&<button className="text-zinc-700 absolute right-1 top-1 cursor-pointer" onClick={handleDelete}><RiDeleteBin6Fill/></button>}
 {del &&<button className="text-zinc-700 absolute right-6 top-1 cursor-pointer" onClick={()=>setSave(false)}><MdModeEdit/></button>}
-<img src={image} alt={fileName}/>
  { del && <button className="text-zinc-700 absolute right-1 bottom-1 block" onClick={()=>setAdd(!add)}><IoMdAddCircle/></button>}
 {add && del && (<AddSpan index={item.index} action={action} value={value}/> )}
 </figure>
