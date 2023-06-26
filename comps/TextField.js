@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ContentEditable from 'react-contenteditable'
 import {RiDeleteBin6Fill} from 'react-icons/ri'
 import {IoMdAddCircle} from 'react-icons/io'
 import AddSpan from '@/comps/AddSpan'
