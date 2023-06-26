@@ -8,7 +8,6 @@ import {MdOutlineSaveAlt,MdModeEdit} from 'react-icons/md'
 import {IoMdCloudDone} from 'react-icons/io'
 import {RiDeleteBin6Fill} from 'react-icons/ri'
 
-import parse from 'html-react-parser'
 function PostBody({error,value,action,state,setValidation}) {
 
 const [save,setSave]=useState(value!=='')
