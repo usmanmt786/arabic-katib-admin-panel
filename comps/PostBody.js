@@ -18,8 +18,8 @@ const [imageUpload,setImageUpload]=useState(true)
 
 const handleSave=(e)=>{
 e.preventDefault()
-const content=document.getElementById('body').innerHTML
-if(content===''){
+const data=document.getElementById('body').innerHTML
+if(data===''){
 alert("Post body is empty..!")
 }else if(!imageUpload){
 alert("Image not selected..!")
@@ -31,20 +31,21 @@ const child=body.children[i]
 const grandChild=child.children[0]
 
 
-if(grandChild.tagName==='P') {
+if(content[i].type==='para') {
+
 if(i+1==body.children.length){
 
-newValue=newValue.concat(`<p>${grandChild.innerHTML}</p>`)
+newValue=`${newValue}<p>${grandChild.value}</p>`
 
 }else{
-newValue=`${newValue}<p>${grandChild.innerHTML}</p><br>`
+newValue=`${newValue}<p>${grandChild.value}</p><br>`
 
 }
-}else if(grandChild.tagName==='STRONG'){
+}else if(content[i].type==='sub'){
 
-newValue=`${newValue}<p><strong>${grandChild.innerHTML}</strong></p>`
+newValue=`${newValue}<p><strong>${grandChild.value}</strong></p>`
 
-}else if(grandChild.tagName==='FIGURE'){
+}else if(content[i].type==='image'){
 if(i+1===body.children.length){
 newValue=`${newValue}<figure>${grandChild.innerHTML}</figure>`
 
@@ -71,7 +72,8 @@ for (let i=0;i<body.children.length;i++){
 const child=body.children[i]
 if(child.tagName==="P"){
 if(child.children.length!=0&&child.children[0].tagName==="STRONG"){
-newContent.push({type:'sub',value:child.innerHTML})
+newContent.push({type:'sub',value:child.children[0].innerHTML})
+
 }else{
 newContent.push({type:'para',value:child.innerHTML})
 }

@@ -5,7 +5,6 @@ import AddSpan from '@/comps/AddSpan'
 import {IoMdAddCircle} from 'react-icons/io'
 import {MdModeEdit} from 'react-icons/md'
 import ImageGallery from '@/comps/ImageGallery'
-import parse from 'html-react-parser'
 function PostBodyUpload({item,setImageUpload,value,action}) {
 
 const [add,setAdd]=useState(false)
@@ -76,13 +75,13 @@ action(value.filter((obj,index)=>index!==item.index))
 {uploading==='selected' || image!==''  ?(
               <img
                 src={uploading==='selected' ?URL.createObjectURL(image):image}
-                className="text-red-500 rounded w-full md:w-1/2 block m-auto"
+                className="text-red-500 rounded w-full md:w-3/4 block m-auto"
                 alt="Try with another"
               />
             ): null}
 
          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-    <div className="w-full m-auto">
+    <div className="md:w-3/4 w-full m-auto">
       <div className="file-upload__input ">
         <input
           type="text"
@@ -134,10 +133,9 @@ setAdd(false)
 }}
 className="figure"
 >
-
+<img src={image} alt={fileName}/>
 {del &&<button className="text-zinc-700 absolute right-1 top-1 cursor-pointer" onClick={handleDelete}><RiDeleteBin6Fill/></button>}
 {del &&<button className="text-zinc-700 absolute right-6 top-1 cursor-pointer" onClick={()=>setSave(false)}><MdModeEdit/></button>}
-<img src={image} alt={fileName}/>
  { del && <button className="text-zinc-700 absolute right-1 bottom-1 block" onClick={()=>setAdd(!add)}><IoMdAddCircle/></button>}
 {add && del && (<AddSpan index={item.index} action={action} value={value}/> )}
 </figure>

@@ -42,17 +42,17 @@ setGallery(false)
 }}/>
 </div>
 <div className="flex flex-col md:flex-row py-1 gap-1 h-full  overflow-hidden">
-<div className={`md:w-3/4 w-full bg-zinc-200 rounded-b overflow-auto  p-2 h-full ${loading ? 'flex text-lg rubik justify-center items-center' : 'grid grid-cols-1 md:grid-cols-4 gap-2'}`}>
+<div className={`md:w-3/4 w-full bg-zinc-200 rounded-b overflow-auto  p-2 h-full ${loading ? 'flex text-lg rubik justify-center items-center' : 'grid grid-cols-2 md:grid-cols-4 gap-2'}`}>
 {loading ? 'Loading...' : images.map((image,index)=>(
-<div className={`post-card ${selected.name===image.name && 'relative p-1 bg-blue-400 rounded'}`} onClick={()=>{
+<div className={`post-card  ${selected.name===image.name && 'relative p-1 bg-blue-400 rounded'}`} onClick={()=>{
 setSelected(image)
 }}>
 {selected.name===image.name&&<TiTick className="bg-blue-400 text-white rounded-full absolute top-0 right-0"/>}
-<img className="flex align-center text-center text-kred-500 h-full w-full"src={`https://api.katib.in/uploads/${image.name}`} alt="Image not found..!"/>
+<img className="w-full h-full"src={`https://api.katib.in/uploads/${image.name}`} />
 </div>
 ))}
 </div>
-<div className="md:w-1/4 w-full bg-zinc-200 rounded-b md:h-full h-1/4 flex flex-col justify-between items-center p-2">
+<div className="md:w-1/4 w-full bg-zinc-200 rounded-b md:h-full h-2/5 flex flex-col justify-between items-center p-2 overflow-scroll">
 {Object.keys(selected).length === 0 ? <h3 className="text-lg text-center py-5 rubik text-zinc-400">Select Image
 </h3>:<div className="rubik font-semibold flex flex-col gap-2">
 <div className="flex gap-1">

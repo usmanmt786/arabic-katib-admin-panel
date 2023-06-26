@@ -253,7 +253,7 @@ z-index:3 !important;
 
 
 .cont{
-@apply relative py-6 bg-zinc-100 p-1 mb-1 rounded 
+@apply relative py-6 bg-zinc-100 p-1 mb-1 rounded border-2 border-blue-200 
 }
 .add button{
 @apply p-1 bg-zinc-200 text-zinc-600 rounded text-lg hover:bg-zinc-300 active:bg-zinc-300
