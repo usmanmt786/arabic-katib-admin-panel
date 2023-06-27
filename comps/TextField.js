@@ -3,20 +3,19 @@ import {RiDeleteBin6Fill} from 'react-icons/ri'
 import {IoMdAddCircle} from 'react-icons/io'
 import AddSpan from '@/comps/AddSpan'
 
-function TextField({item,action,value}) {
+function TextField({index,action,value}) {
 
-const [placeholder,setPlaceholder]=useState(item.value ? false : true)
+
 const [active,setActive]=useState(false)
 const [del,setDel]=useState(false)
 const [add,setAdd]=useState(false)
-const [textValue,setTextValue]=useState(item.value ? item.value : '')
+
 
 
 const handleDelete=(e)=>{
 e.preventDefault()
 
-action(value.filter((obj,index)=>index!==item.index))
-
+action(value.filter((obj,Index)=>Index!==index))
 
 }
 
@@ -26,15 +25,18 @@ action(value.filter((obj,index)=>index!==item.index))
 setAdd(false)
 }}>
 <textarea
-Placeholder={item.type==='para' ? "Add paragraph..." : "Add sub heading..."}
-className={`para ${item.type==='sub' && 'font-bold'}`}
+placeholder={value[index].type==='para' ? "Add paragraph..." : "Add sub heading..."}
+className={`para ${value[index].type==='sub' && 'font-bold'}`}
 rows="1"
 onChange={(e)=>{
 e.target.style.height='auto'
 e.target.style.height=`${e.target.scrollHeight}px`
-setTextValue(e.target.value)
+const newValue=[...value]
+newValue[index].value=e.target.value
+action(newValue)
+
 }}
-value={textValue}
+value={value[index].value}
 >
 
 

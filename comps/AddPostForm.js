@@ -101,8 +101,9 @@ return(
 setValidation()
               }}
               disabled={state}
+value={title}
             >
-              {title}
+              
             </textarea>
           </div>
 <PostBody value={body} action={setBody} setValidation={setValidation} state={state} error={errors.body}/>

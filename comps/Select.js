@@ -35,10 +35,10 @@ setValidation()
               disabled={state}
             >
               <option value="">Select</option>
-              {!authors ? postTypes.map((obj)=>(<option value={obj.value}>{obj.name}</option>))
+              {!authors ? postTypes.map((obj,index)=>(<option value={obj.value} key={index}>{obj.name}</option>))
              : 
-authors.map((obj) => (
-                <option value={obj.author_id}>{obj.author_name}</option>
+authors.map((obj,index) => (
+                <option value={obj.author_id} key={index}>{obj.author_name}</option>
               ))
 }
             </select>

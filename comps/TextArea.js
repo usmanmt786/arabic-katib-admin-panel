@@ -34,9 +34,9 @@ maxLength={length ? length :""}
 setValidation()
               }}
               disabled={state}
-
+value={value}
             >
-              {value}
+              
             </textarea>
           </div>
  

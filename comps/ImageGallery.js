@@ -3,13 +3,14 @@ import {AiFillCloseCircle} from 'react-icons/ai'
 import getUploads from '@/utils/getUploads'
 import {TiTick} from 'react-icons/ti'
 
-function ImageGallery({setGallery,action,setFileName}){
+function ImageGallery({setGallery,action}){
 
 const [images,setImages]=useState([])
 const [loading,setLoading]=useState(false)
 const [selected,setSelected]=useState({})
 
 useEffect(()=>{
+
 const getImages=async ()=>{
 setLoading(true)
 try{
@@ -44,7 +45,7 @@ setGallery(false)
 <div className="flex flex-col md:flex-row py-1 gap-1 h-full  overflow-hidden">
 <div className={`md:w-3/4 w-full bg-zinc-200 rounded-b overflow-auto  p-2 h-full ${loading ? 'flex text-lg rubik justify-center items-center' : 'grid grid-cols-2 md:grid-cols-4 gap-2'}`}>
 {loading ? 'Loading...' : images.map((image,index)=>(
-<div className={`post-card  ${selected.name===image.name && 'relative p-1 bg-blue-400 rounded'}`} onClick={()=>{
+<div key={index} className={`post-card  ${selected.name===image.name && 'relative p-1 bg-blue-400 rounded'}`} onClick={()=>{
 setSelected(image)
 }}>
 {selected.name===image.name&&<TiTick className="bg-blue-400 text-white rounded-full absolute top-0 right-0"/>}
@@ -68,8 +69,7 @@ setSelected(image)
 <button className={`px-3 py-2 text-zinc-100 rounded rubik font-semibold w-1/2 ${Object.keys(selected).length !== 0 ? 'bg-green-500 hover:bg-green-600' : 'bg-zinc-600'}`}
 disabled={Object.keys(selected).length !== 0 ? false :true}
 onClick={()=>{
-action(`https://api.katib.in/uploads/${selected.name}`)
-setFileName(selected.name)
+action(`https://api.katib.in/uploads/${selected.name}`,selected.name)
 document.body.style.overflow="scroll"
 setGallery(false)
 }}

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {VscTriangleLeft} from "react-icons/vsc";
 import PostBodyUpload from '@/comps/PostBodyUpload'
 import TextField from '@/comps/TextField'
@@ -15,6 +15,19 @@ const [content,setContent]=useState([])
 const [active,setActive]=useState(false)
 const [imageUpload,setImageUpload]=useState(true)
 
+useEffect(()=>{
+
+if(content.length!=0){
+for(let i=0;i<content.length;i++){
+
+if(content[i].type==='image' && !content[i].save){
+setImageUpload(false)
+break;
+}else setImageUpload(true)
+}
+}
+},[content])
+
 const handleSave=(e)=>{
 e.preventDefault()
 const data=document.getElementById('body').innerHTML
@@ -24,37 +37,36 @@ alert("Post body is empty..!")
 alert("Image not selected..!")
 }else {
 let newValue=''
-const body=document.querySelector('#body')
-for (let i=0;i<body.children.length;i++){
-const child=body.children[i]
-const grandChild=child.children[0]
 
+content.map((obj,index)=>{
 
-if(content[i].type==='para') {
+if(obj.type==='para') {
 
-if(i+1==body.children.length){
+if(index+1==content.length){
 
-newValue=`${newValue}<p>${grandChild.value}</p>`
+newValue=`${newValue}<p>${obj.value}</p>`
 
 }else{
-newValue=`${newValue}<p>${grandChild.value}</p><br>`
+newValue=`${newValue}<p>${obj.value}</p><br>`
 
 }
-}else if(content[i].type==='sub'){
+}else if(obj.type==='sub'){
 
-newValue=`${newValue}<p><strong>${grandChild.value}</strong></p>`
+newValue=`${newValue}<p><strong>${obj.value}</strong></p>`
 
-}else if(content[i].type==='image'){
-if(i+1===body.children.length){
-newValue=`${newValue}<figure>${grandChild.innerHTML}</figure>`
+}else if(obj.type==='image'){
+if(index+1===content.length){
+newValue=`${newValue}<figure><img src=${obj.value} alt=${obj.name}/></figure>`
 
 }else{
 
- newValue=`${newValue}<figure>${grandChild.innerHTML}</figure><br>`
+ newValue=`${newValue}<figure><img src=${obj.value} alt=${obj.name}/></figure><br>`
+
 
 }
 }
-}
+
+})
 
 action(newValue)
 setContent([])
@@ -77,7 +89,7 @@ newContent.push({type:'sub',value:child.children[0].innerHTML})
 newContent.push({type:'para',value:child.innerHTML})
 }
 }else if(child.tagName==="FIGURE"){
-newContent.push({type:'image',value:child.children[0].currentSrc})
+newContent.push({type:'image',value:child.children[0].currentSrc,name:child.children[0].alt.slice(0,-1),save:true})
 
 }else if(child.tagName==="BLOCKQUOTE"){
 newContent.push({type:'para',value:child.outerHTML})
@@ -113,7 +125,7 @@ setSave(false)
 <div className="flex gap-1">
 <button className="controls" onClick={(e)=>{
 e.preventDefault()
-setContent([...content,{type:'para'}])
+setContent([...content,{type:'para',value:''}])
 
 }}
 
@@ -122,7 +134,7 @@ setContent([...content,{type:'para'}])
 </button>
 <button className="controls" onClick={(e)=>{
 e.preventDefault()
-setContent([...content,{type:'sub'}])
+setContent([...content,{type:'sub',value:''}])
 
 }}
 >
@@ -130,7 +142,7 @@ setContent([...content,{type:'sub'}])
 </button>
 <button className="controls" onClick={(e)=>{
 e.preventDefault()
-setContent([...content,{type:'image'}])
+setContent([...content,{type:'image',value:'',name:'',save:false}])
 
 }} 
 >
@@ -162,11 +174,11 @@ onMouseLeave={()=>setActive(false)}
             >
              {save ? parse(value) : content.length!=0 && content.map((item,index)=>{
 if(item.type==='para'){
-return (<TextField item={{...item,index:index}}  key={index} action={setContent} value={content} /> )
+return (<TextField index={index}  key={index} action={setContent} value={content} /> )
 } else if(item.type==='sub'){
-return (<TextField item={{...item,index:index}} key={index} action={setContent} value={content} /> )
+return (<TextField index={index}  key={index} action={setContent} value={content} /> )
 }else if(item.type==='image'){
-return (<PostBodyUpload item={{...item,index:index}} key={index} action={setContent} value={content} setImageUpload={setImageUpload} />) 
+return (<PostBodyUpload index={index} key={index} action={setContent} value={content}  />) 
 }
 })}
             </div>

@@ -5,34 +5,39 @@ import AddSpan from '@/comps/AddSpan'
 import {IoMdAddCircle} from 'react-icons/io'
 import {MdModeEdit} from 'react-icons/md'
 import ImageGallery from '@/comps/ImageGallery'
-function PostBodyUpload({item,setImageUpload,value,action}) {
+function PostBodyUpload({index,value,action}) {
 
 const [add,setAdd]=useState(false)
   const fileInputRef = useRef(null);
 const [del,setDel]=useState(false)
 const [uploading,setUploading] = useState('not selected')
-const [image,setImage]=useState(item.value ? item.value :'')
-const [fileName,setFileName]=useState(item.value ? item.value :'')
-const [save,setSave]=useState(item.value ? true : false)
 const [errorMessage, setErrorMessage] = useState('');
 const [gallery,setGallery]=useState(false)
 
+const valueChange=(Value,name)=>{
+const newValue=[...value]
+newValue[index].value=Value
+newValue[index].name=name
+action(newValue)
+}
  const handleOpenFileDialog = () => {
     fileInputRef.current.click();
   };
-setImageUpload(!save ? false : true)
+
   const handleFileChange = (event) => {
 
     const file = event.target.files[0];
 
     if(!(file.name).endsWith('.jpg')){
-setImage('');
-setFileName('')
+const newValue=[...value]
+newValue[index].value=''
+newValue[index].name=''
+action(newValue)
 
       setErrorMessage('File should be jpg..!');
 } else {
-      setImage(file);
-setFileName(file.name)
+  valueChange(file,file.name)
+
       setErrorMessage('');
 
 setUploading('selected')
@@ -44,16 +49,17 @@ e.preventDefault()
 setUploading('uploading')
 
 try{
-    const response = await uploadImage({fileName,image:image})
+    const response = await uploadImage({fileName:value[index].name,image:value[index].value})
 
     if(response.success){
-setImage(`https://api.katib.in/uploads/${response.name}`)
-setFileName(response.name)
+ 
+valueChange(`https://api.katib.in/uploads/${response.name}`,response.name)
+
 alert(response.success)
 setUploading('not-selected')
 }else {
 setUploading('selected')
-alert(response.error)
+alert(`uploading failed, ${response.error}`)
 }
 }catch(error){
 console.log(error)
@@ -64,17 +70,15 @@ setUploading('selected')
  
 const handleDelete=(e)=>{
 e.preventDefault()
-
-setImageUpload(true)
-action(value.filter((obj,index)=>index!==item.index))
-
+action(value.filter((obj,Index)=>Index!==index))
 }
+
   return (
-!save ? <><div className="flex flex-col gap-1 relative p-5 md:p-10 my-1 rounded border-2 border-blue-200 relative bg-zinc-100" onMouseOver={()=>setDel(true)} onMouseOut={()=>setDel(false)}>
+!value[index].save ? <><div className="flex flex-col gap-1 relative p-5 md:p-10 my-1 rounded border-2 border-blue-200 relative bg-zinc-100" onMouseOver={()=>setDel(true)} onMouseOut={()=>setDel(false)}>
 {del &&<button className="text-zinc-700 absolute right-1 top-1 cursor-pointer" onClick={handleDelete}><RiDeleteBin6Fill/></button>}
-{uploading==='selected' || image!==''  ?(
+{uploading==='selected' || value[index].value!==''  ?(
               <img
-                src={uploading==='selected' ?URL.createObjectURL(image):image}
+                src={uploading==='selected' ?URL.createObjectURL(value[index].value):value[index].value}
                 className="text-red-500 rounded w-full md:w-3/4 block m-auto"
                 alt="Try with another"
               />
@@ -86,8 +90,12 @@ action(value.filter((obj,index)=>index!==item.index))
         <input
           type="text"
           placeholder="Select file..."
-          value={fileName}
-          onChange={(e)=>setFileName(e.target.value)}
+          value={value[index].name}
+          onChange={(e)=>{
+const newValue=[...value]
+newValue[index].name=e.target.value
+action(newValue)
+}}
 disabled={uploading === 'selected' ? false : true }
 
         />
@@ -103,10 +111,11 @@ disabled={uploading==='uploading' ? true : false}
 disabled={uploading==='uploading' ? true : false}
 >{uploading==='selected' ? 'Upload' : uploading==="uploading" ? 'uploading' : 'Browse'}</button>
 </div>
-{typeof(image)==='string' && image!=='' && <button className="upload bg-green-500"
+{typeof(value[index].value)==='string' && value[index].value!=='' && <button className="upload bg-green-500"
 onClick={()=>{
-setSave(true)
-setImageUpload(true)
+const newValue=[...value]
+newValue[index].save=true
+action(newValue)
 }}>
 Save
 </button>}
@@ -124,7 +133,7 @@ Save
     </div>
             
           </div> 
-{gallery && <ImageGallery setGallery={setGallery} action={setImage} setFileName={setFileName}/>}
+{gallery && <ImageGallery setGallery={setGallery} action={valueChange} />}
 </>:
 <div>
 <figure onMouseOver={()=>setDel(true)} onMouseLeave={()=>{
@@ -133,9 +142,13 @@ setAdd(false)
 }}
 className="figure"
 >
-<img src={image} alt={fileName}/>
+<img src={value[index].value} alt={value[index].name}/>
 {del &&<button className="text-zinc-700 absolute right-1 top-1 cursor-pointer" onClick={handleDelete}><RiDeleteBin6Fill/></button>}
-{del &&<button className="text-zinc-700 absolute right-6 top-1 cursor-pointer" onClick={()=>setSave(false)}><MdModeEdit/></button>}
+{del &&<button className="text-zinc-700 absolute right-6 top-1 cursor-pointer" onClick={()=>{
+const newValue=[...value]
+newValue[index].save=false
+action(newValue)
+}}><MdModeEdit/></button>}
  { del && <button className="text-zinc-700 absolute right-1 bottom-1 block" onClick={()=>setAdd(!add)}><IoMdAddCircle/></button>}
 {add && del && (<AddSpan index={item.index} action={action} value={value}/> )}
 </figure>

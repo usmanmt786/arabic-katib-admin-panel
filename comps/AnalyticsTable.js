@@ -88,7 +88,7 @@ setToDate(e.target.value)
         </thead>
         <tbody>
          {!loading ? postViews.map((obj,index)=>(
-<tr>
+<tr key={index}>
 <td className="text-center">{index+1}</td>
 <td  className="noto">{obj.dimensionValues[0].title}</td>
 <td className="text-center">{obj.metricValues[0].value}</td>

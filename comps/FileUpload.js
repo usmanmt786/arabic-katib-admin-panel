@@ -11,6 +11,10 @@ const [errorMessage, setErrorMessage] = useState('');
  const handleOpenFileDialog = () => {
     fileInputRef.current.click();
   };
+const valueChange=(Value,name)=>{
+setFileName(name)
+action(Value)
+}
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -47,7 +51,7 @@ setFileName(response.name)
 alert(response.success)
 setUploading('not-selected')
 }else{ 
-alert(response.error)
+alert(`uploading failed, ${response.error}`)
 setUploading('selected')
 }
 }
@@ -114,7 +118,7 @@ disabled={state}
       </div>
 
     </div>
-            {gallery && <ImageGallery setGallery={setGallery} action={action} setFileName={setFileName}/>}
+            {gallery && <ImageGallery setGallery={setGallery} action={valueChange}/>}
           </div>
  
   );
