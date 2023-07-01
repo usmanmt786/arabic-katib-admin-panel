@@ -2,10 +2,10 @@ import React,{useState,useEffect} from 'react'
 import {VscTriangleLeft} from "react-icons/vsc";
 import PostBodyUpload from '@/comps/PostBodyUpload'
 import TextField from '@/comps/TextField'
-import { BsParagraph } from 'react-icons/bs';
-import {BiHeading,BiImageAdd} from 'react-icons/bi';
+
+
 import {MdOutlineSaveAlt,MdModeEdit} from 'react-icons/md'
-import {IoMdCloudDone} from 'react-icons/io'
+
 import {RiDeleteBin6Fill} from 'react-icons/ri'
 import parse from 'html-react-parser'
 import {IoMdAddCircle} from 'react-icons/io'
@@ -126,31 +126,7 @@ setSave(false)
 <div className="p-2 bg-zinc-200 rounded flex justify-end  gap-3">
 {!save && 
 <div className="flex gap-1">
-<button className="controls" onClick={(e)=>{
-e.preventDefault()
-setContent([...content,{type:'para',value:''}])
 
-}}
-
->
-<BsParagraph/>
-</button>
-<button className="controls" onClick={(e)=>{
-e.preventDefault()
-setContent([...content,{type:'sub',value:''}])
-
-}}
->
-<BiHeading/>
-</button>
-<button className="controls" onClick={(e)=>{
-e.preventDefault()
-setContent([...content,{type:'image',value:'',name:'',save:false}])
-
-}} 
->
-<BiImageAdd/>
-</button>
 
 <button className="controls" onClick={(e)=>{
 e.preventDefault()
