@@ -113,6 +113,7 @@ disabled={uploading==='uploading' ? true : false} onClick={uploading === 'select
           accept="*"
           ref={fileInputRef}
            onChange={handleFileChange}
+accept="image/*"
 disabled={state}
         />
       </div>

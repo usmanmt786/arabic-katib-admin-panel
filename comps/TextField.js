@@ -40,7 +40,7 @@ value={value[index].value}
 >
 
 
-</textarea>{del && <button className="text-zinc-700 absolute right-1 top-1 block" onClick={handleDelete}><RiDeleteBin6Fill/></button>}{del && <button className="text-zinc-700 absolute right-1 bottom-1 block" onClick={()=>setAdd(!add)}><IoMdAddCircle/></button>} {add && del && (<AddSpan index={item.index} action={action} value={value} />)}</div>
+</textarea>{del && <button className="text-zinc-700 absolute right-1 top-1 block" onClick={handleDelete}><RiDeleteBin6Fill/></button>}{del && <button className="text-zinc-700 absolute right-1 bottom-1 block" onClick={()=>setAdd(!add)}><IoMdAddCircle/></button>} {add && del && (<AddSpan index={index} action={action} value={value} />)}</div>
 
  
   );
