@@ -73,7 +73,7 @@ return {error:"Post adding failed, try again..!"}
 return(
 <div className="overflow-hidden flex flex-col">
  <div className="bg-gray-200 text-kteal-800 w-full h-full overflow-auto p-2 rounded-md shadow-md mx-auto my-2 md:flex   md:gap-1">
-        <div className="flex flex-col min-h-screen overflow-y-scroll  bg-white rounded p-2 shadow-md md:h-full gap-1 w-full md:w-9/12 overflow-auto">
+        <div className="flex flex-col  overflow-y-scroll  bg-white rounded p-2 shadow-md min-h-full h-auto gap-1 w-full md:w-9/12 overflow-auto">
 
           <div className="flex flex-col gap-1 relative">
             {errors.title && (
@@ -108,7 +108,7 @@ value={title}
           </div>
 <PostBody value={body} action={setBody} setValidation={setValidation} state={state} error={errors.body}/>
         </div>
-        <div className="bg-white w-full  md:h-full min-h-screen md:w-3/12 rounded shadow-md overflow-auto p-2 flex flex-col gap-2">
+        <div className="bg-white w-full  h-auto min-h-full md:w-3/12 rounded shadow-md overflow-auto p-2 flex flex-col gap-2">
           <div className="text-2xl">Details</div>
           <hr />
           

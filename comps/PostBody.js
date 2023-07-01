@@ -8,13 +8,16 @@ import {MdOutlineSaveAlt,MdModeEdit} from 'react-icons/md'
 import {IoMdCloudDone} from 'react-icons/io'
 import {RiDeleteBin6Fill} from 'react-icons/ri'
 import parse from 'html-react-parser'
+import {IoMdAddCircle} from 'react-icons/io'
+import AddSpan from '@/comps/AddSpan'
 function PostBody({error,value,action,state,setValidation}) {
 
 const [save,setSave]=useState(value!=='')
 const [content,setContent]=useState([])
 const [active,setActive]=useState(false)
 const [imageUpload,setImageUpload]=useState(true)
-
+const [add,setAdd]=useState(false)
+const [Span,setSpan]=useState(false)
 useEffect(()=>{
 
 if(content.length!=0){
@@ -103,7 +106,7 @@ setSave(false)
 }
   return (
 
-                  <div className="h-full flex flex-col gap-1 relative ">
+                  <div className="flex-grow flex flex-col gap-1 relative ">
             {error && (
               <span
                 style={{ left: "5.3rem", zIndex: "1" }}
@@ -165,13 +168,21 @@ disabled={state}
             <div
               id="body"
               
-              className={`border-2 rounded  focus:z-10 sm:text-sm focus:border-blue-400 border-gray-300 p-2   text-lg noto  w-full h-screen md:h-full  overflow-auto ${active &&  'active' } ${save && 'px-10'}`}
-             
+              className={`border-2 rounded  focus:z-10 sm:text-sm focus:border-blue-400 border-gray-300 pt-6 p-2   text-lg noto  w-full h-screen md:h-full  overflow-auto ${active &&  'active' } ${save && 'px-10'} relative`}
+onMouseOver={()=>setAdd(true)}             
               
-onClick={()=>setActive(true)}
-onMouseLeave={()=>setActive(false)}
+onClick={()=>{
+setActive(true)
+}}
+onMouseLeave={()=>{
+setActive(false)
+setAdd(false)
+setSpan(false)
+}}
               
             >
+{add && <button className="text-zinc-700 text-xl z-10 absolute right-1 top-1 block" onClick={()=>setSpan(!Span)}><IoMdAddCircle/></button>}
+{add && Span && (<AddSpan index={-1} action={setContent} value={content} />)}
              {save ? parse(value) : content.length!=0 && content.map((item,index)=>{
 if(item.type==='para'){
 return (<TextField index={index}  key={index} action={setContent} value={content} /> )
