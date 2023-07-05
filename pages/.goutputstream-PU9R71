@@ -1,0 +1,43 @@
+import Layout from '@/comps/Layout'
+import SideNav from '@/comps/SideNav'
+import Link from 'next/link'
+import MediaScreen from '@/comps/MediaScreen'
+import getUploads from '@/utils/getUploads'
+
+export default function MediaPage({data}) {
+const posts=JSON.parse(data)
+
+  return (
+      <Layout title="KATIB - Media">
+<section className="flex">
+<SideNav activePage={6}/>
+<div className="w-full h-screen overflow-hidden p-2 flex flex-col gap-2">
+<div className="flex justify-between border-b-2 border-gray-300 p-2 ">
+<h1 className="  font-semibold text-3xl ">Media</h1>
+</div>
+
+
+<MediaScreen data={posts}/>
+
+</div>
+</section>
+</Layout>
+  
+  )
+}
+MediaPage.auth=true
+
+
+export async function getServerSideProps(){
+
+
+        const data = await getUploads();
+        
+  
+return {
+
+props:{
+data:data
+}
+}
+}

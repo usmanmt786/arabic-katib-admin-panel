@@ -126,8 +126,6 @@ setSave(false)
 <div className="p-2 bg-zinc-200 rounded flex justify-end  gap-3">
 {!save && 
 <div className="flex gap-1">
-
-
 <button className="controls" onClick={(e)=>{
 e.preventDefault()
 setContent([])
@@ -157,7 +155,7 @@ setSpan(false)
 }}
               
             >
-{add && <button className="text-zinc-700 text-xl z-10 absolute right-1 top-1 block" onClick={()=>setSpan(!Span)}><IoMdAddCircle/></button>}
+{add && !save && <button className="text-zinc-700 text-xl z-10 absolute right-1 top-1 block" onClick={()=>setSpan(!Span)}><IoMdAddCircle/></button>}
 {add && Span && (<AddSpan index={-1} action={setContent} value={content} />)}
              {save ? parse(value) : content.length!=0 && content.map((item,index)=>{
 if(item.type==='para'){
