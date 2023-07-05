@@ -19,7 +19,7 @@ if(response && response.success){
 setImages(response.images)
 setLoading(false)
 }else{
-alert("Image not collected")
+alert("Images not collected")
 setLoading(false)
 }
 }

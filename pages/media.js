@@ -1,11 +1,34 @@
+import React,{useEffect,useState} from 'react'
 import Layout from '@/comps/Layout'
 import SideNav from '@/comps/SideNav'
-import Link from 'next/link'
 import MediaScreen from '@/comps/MediaScreen'
-import excuteQuery from '@/utils/db'
+import getUploads from '@/utils/getUploads'
+import MediaUpload from '@/comps/MediaUpload'
+export default function MediaPage() {
+const [images,setImages]=useState([])
+const [add,setAdd]=useState(false)
+useEffect(()=>{
 
-export default function MediaPage({data}) {
-const posts=JSON.parse(data)
+const getImages=async ()=>{
+
+try{
+const response=await getUploads()
+if(response && response.success){
+setImages(response.images)
+
+}else{
+alert("Images not collected")
+
+}
+}
+catch(error){
+console.log(error)
+alert('Fetch failed')
+
+}
+}
+getImages()
+},[add])
 
   return (
       <Layout title="KATIB - Media">
@@ -14,11 +37,18 @@ const posts=JSON.parse(data)
 <div className="w-full h-screen overflow-hidden p-2 flex flex-col gap-2">
 <div className="flex justify-between border-b-2 border-gray-300 p-2 ">
 <h1 className="  font-semibold text-3xl ">Media</h1>
+<button className="add-button" onClick={()=>{
+
+setAdd(true)
+}}>Add Image</button>
 </div>
 
 
-<MediaScreen data={posts}/>
+<MediaScreen images={images} setImages={setImages} setAdd={setAdd} />
+{add && <MediaUpload setAdd={setAdd}/>
 
+
+}
 </div>
 </section>
 </Layout>
@@ -28,19 +58,4 @@ const posts=JSON.parse(data)
 MediaPage.auth=true
 
 
-export async function getServerSideProps(){
 
-
-        const posts = await excuteQuery({
-            query: 'SELECT posts.*,authors.author_name, GROUP_CONCAT(categories.cat_name) as cat_name  FROM posts LEFT JOIN authors ON posts.post_authorId=authors.author_id LEFT JOIN categories ON find_in_set(categories.cat_id,posts.post_categoryId) >0 GROUP BY posts.post_id'
-            
-        });
-        
-  
-return {
-
-props:{
-data:JSON.stringify(posts)
-}
-}
-}
