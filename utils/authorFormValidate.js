@@ -19,7 +19,7 @@ errors.email="Choose valid email..!"
 if(Object.keys(errors).length === 0){
 setValidation('success')
 setState('')
-setError({})
+setErrors({})
 }else {
 setErrors(errors)
 setState('')
