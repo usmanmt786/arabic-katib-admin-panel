@@ -21,7 +21,7 @@ style={{width:'5rem'}}
                   setState,
 
                 );
-alert(state)
+
               }}
               disabled={state}
             >
