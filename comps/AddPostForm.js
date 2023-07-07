@@ -134,7 +134,7 @@ value={title}
 
 <MultipleSelect label='Next posts' content={posts} value={nexts} action={setNexts} id="nexts"  setValidation={setValidation} type="post"/>
 
-<ValidationButton state={state} validate={postFormValidate} add={addPost}    formData={formData} setErrors={setErrors} setState={setState} setValidation={setValidation} validation={validation} redirect="posts"/>
+<ValidationButton state={state} validate={postFormValidate} add={addPost}    formData={formData} setErrors={setErrors} setState={setState} setValidation={setValidation} validation={validation} redirect="posts" post="true"/>
           
             
         </div>
