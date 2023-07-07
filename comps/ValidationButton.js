@@ -22,7 +22,7 @@ style={{width:'5rem'}}
 
                 );
               }}
-              disbled={state}
+              disabled={state}
             >
               {validation == "loading" ? (
                 'loading'
