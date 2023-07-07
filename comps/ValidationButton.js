@@ -14,7 +14,6 @@ style={{width:'5rem'}}
               onClick={async () => {
                 setValidation("loading");
                 setState("disabled");
-console.log(formData)
                 await validate(
                   formData,
                   setValidation,
