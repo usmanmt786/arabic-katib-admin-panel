@@ -20,6 +20,7 @@ errors.type=blankMsg
 if(Object.keys(errors).length === 0){
 setValidation('success')
 setState('')
+setErrors({})
 }else {
 setErrors(errors)
 setState('')
