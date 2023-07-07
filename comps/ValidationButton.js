@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 
 import {useRouter} from 'next/router'
 
-function ValidationButton({state,validate,add,formData,setErrors,setState,validation, setValidation,redirect}) {
+function ValidationButton({state,validate,add,formData,setErrors,setState,validation, setValidation,redirect,post}) {
 
 const router=useRouter()
   return (
@@ -37,6 +37,7 @@ alert(state)
 style={{width:'5rem'}}
 disabled={state}
               onClick={async () => {
+if(post){
 if(formData.category.length!=0){
 let tempCats=''
 formData.category.map((item)=>{
@@ -52,6 +53,8 @@ tempNexts=tempNexts==''?item.value : tempNexts+`,${item.value}`
 formData.nexts=tempNexts
 
 }else formData.nexts=''
+
+}
                 setValidation("posting");
                 setState("disabled");
 
