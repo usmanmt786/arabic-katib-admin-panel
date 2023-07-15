@@ -40,14 +40,17 @@ value.map((obj)=>{
 options.map((item)=>{
 if(type==='post'){ if(obj.post_id === item.value){
 oldValue.push(item)
+action(oldValue)
 }}else{
  if(obj.cat_id === item.value){
 oldValue.push(item)
+action(oldValue)
 }
 }
 
 })
 })
+
 }
 
   const handleSelectChange = (selectedOptions) => {

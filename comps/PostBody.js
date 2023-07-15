@@ -102,7 +102,7 @@ newContent.push({type:'para',value:child.outerHTML})
 setContent(newContent)
 action('')
 setSave(false)
-
+setValidation()
 }
   return (
 
