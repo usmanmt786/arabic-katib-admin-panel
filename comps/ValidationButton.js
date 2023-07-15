@@ -14,6 +14,7 @@ style={{width:'5rem'}}
               onClick={async () => {
                 setValidation("loading");
                 setState("disabled");
+
                 await validate(
                   formData,
                   setValidation,
@@ -37,13 +38,16 @@ style={{width:'5rem'}}
 style={{width:'5rem'}}
 disabled={state}
               onClick={async () => {
+
 if(post){
 if(formData.category.length!=0){
+
 let tempCats=''
 formData.category.map((item)=>{
 tempCats=tempCats==''?item.value : tempCats+`,${item.value}`
 })
 formData.category=tempCats
+
 }else formData.category=''
 if(formData.nexts.length!=0){
 let tempNexts=''
@@ -55,6 +59,7 @@ formData.nexts=tempNexts
 }else formData.nexts=''
 
 }
+
                 setValidation("posting");
                 setState("disabled");
 
