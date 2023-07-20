@@ -6,7 +6,7 @@ function MediaUpload({setAdd}) {
 
 
   const fileInputRef = useRef(null);
-const [uploading,setUploading] = useState('not selected')
+const [status,setStatus] = useState('not-selected')
 const [errorMessage, setErrorMessage] = useState('');
 const [image,setImage]=useState('')
 const [fileName,setFileName]=useState('')
@@ -19,44 +19,39 @@ const [fileName,setFileName]=useState('')
 
     const file = event.target.files[0];
 
-    if(!(file.name).endsWith('.jpg')){
-setImage('')
-setFileName('')
-
-      setErrorMessage('File should be jpg..!');
-} else {
+  
   setImage(file)
 setFileName(file.name)
 
       setErrorMessage('');
 
-setUploading('selected')
-    }
+setStatus('selected')
+    
 
   };
 const handleUploading=async (e)=>{
 e.preventDefault()
-setUploading('uploading')
+setStatus('uploading')
 
 try{
     const response = await uploadImage({fileName,image})
 
     if(response.success){
- 
+ setStatus('fixed')
 setImage(`https://api.katib.in/uploads/${response.name}`)
 setFileName(response.name)
 
 alert(response.success)
-setUploading('not-selected')
+
 setAdd(false)
 }else {
-setUploading('selected')
+setStatus('selected')
 alert(`uploading failed, ${response.error}`)
 }
 }catch(error){
 console.log(error)
 alert('Uploading Failed..!')
-setUploading('selected')
+setStatus('selected')
 }
 }
  
@@ -66,9 +61,9 @@ setUploading('selected')
 
 <div className="flex flex-col gap-1 p-5 relative md:p-10 my-1 rounded border-2 border-blue-200 relative bg-zinc-100 w-4/5 md:w-2/3" >
 <button className="top-1 right-1 absolute" onClick={()=>setAdd(false)}><AiFillCloseCircle/></button>
-{uploading==='selected' || image!==''  ?(
+{status==='selected' || image!==''  ?(
               <img
-                src={uploading==='selected' ?URL.createObjectURL(image):image}
+                src={status==='selected' || status==='uploading' ?URL.createObjectURL(image):image}
                 className="text-red-500 rounded w-full md:w-3/4 block m-auto"
                 alt="Try with another"
               />
@@ -84,23 +79,28 @@ setUploading('selected')
           onChange={(e)=>{
 setFileName(e.target.value)
 }}
-disabled={uploading === 'selected' ? false : true }
+disabled={status === 'selected' ? false : true }
 
         />
 <div className="flex flex-col justify-between w-full md:w-1/2 gap-1">
-<div className="flex gap-4">
-        <button onClick={uploading === 'selected' ? handleUploading : handleOpenFileDialog} className={`upload ${uploading==='selected' ? 'bg-green-500' : uploading==='uploading' ? 'bg-zinc-500' : 'bg-blue-500'}`} 
-disabled={uploading==='uploading' ? true : false}
->{uploading==='selected' ? 'Upload' : uploading==="uploading" ? 'uploading' : 'Browse'}</button>
+<div className="flex flex-col gap-2">
+        <button onClick={handleOpenFileDialog} className={`upload bg-blue-500`} 
+disabled={status==='uploading' ? true : false}
+>Browse</button>
+{status!=='not-selected' && status!=='fixed' && <button className={`upload bg-green-500 w-1/2 ${status==='uploading' && 'bg-zinc-500'}`}
+disabled={status==='uploading' ? true : false} onClick={handleUploading}
+>{status==='selected'? 'Upload' :'Uploading'}</button>}
 </div>
+
 </div>
         <input
           type="file"
-          accept="*"
+          accept="image/jpeg image/jpg"
           ref={fileInputRef}
            onChange={handleFileChange}
 
         />
+
       </div>
 
 
