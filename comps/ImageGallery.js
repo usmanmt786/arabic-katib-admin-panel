@@ -3,7 +3,7 @@ import {AiFillCloseCircle} from 'react-icons/ai'
 import getUploads from '@/utils/getUploads'
 import {TiTick} from 'react-icons/ti'
 
-function ImageGallery({setGallery,action}){
+function ImageGallery({setGallery,action,setStatus,seo}){
 
 const [images,setImages]=useState([])
 const [loading,setLoading]=useState(false)
@@ -16,7 +16,7 @@ setLoading(true)
 try{
 const response=await getUploads()
 if(response && response.success){
-setImages(response.images)
+setImages(seo ? response.images.filter(item=>item.size/1024<=500) : response.images)
 setLoading(false)
 }else{
 alert("Images not collected")
@@ -38,8 +38,10 @@ return(
 <div className="rounded-t p-1 bg-zinc-200 flex justify-between">
 <h4 className="text-xl text-zinc-500 rubik font-semibold">Image Gallery</h4>
 <AiFillCloseCircle className="text-2xl text-zinc-500 hover:text-zinc-600 cursor-pointer active:text-zinc-600" onClick={()=>{
+
 document.body.style.overflow="scroll"
 setGallery(false)
+
 }}/>
 </div>
 <div className="flex flex-col md:flex-row py-1 gap-1 h-full  overflow-hidden">
@@ -71,6 +73,7 @@ disabled={Object.keys(selected).length !== 0 ? false :true}
 onClick={()=>{
 action(`https://api.katib.in/uploads/${selected.name}`,selected.name)
 document.body.style.overflow="scroll"
+setStatus('fixed')
 setGallery(false)
 }}
 >Confirm</button>

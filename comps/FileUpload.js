@@ -5,7 +5,7 @@ import ImageGallery from '@/comps/ImageGallery'
 function FileUpload({label,error,value,action,state,id,rows,span,trngle,height,setValidation,edit,seo}) {
 const [gallery,setGallery]=useState(false)
   const fileInputRef = useRef(null);
-const [uploading,setUploading] = useState('not selected')
+const [status,setStatus] = useState('not-selected')
 const [fileName,setFileName]=useState(edit ? value : '')
 const [errorMessage, setErrorMessage] = useState('');
  const handleOpenFileDialog = () => {
@@ -19,46 +19,42 @@ action(Value)
   const handleFileChange = (e) => {
     const file = e.target.files[0];
 setValidation()
-    if (file && file.size/1024 > 200 && seo==true) { 
+    if (file && file.size/1024 > 500 && seo==true) { 
       action('');
 setFileName('')
 
-      setErrorMessage('File size exceeds the limit (200kb)..!');
-    }else if(file && !(file.name).endsWith('.jpg')){
-action('');
-setFileName('')
-
-      setErrorMessage('File should be jpg..!');
-} else {
+      setErrorMessage('File size exceeds the limit (500kbs)..!');
+    }else {
       action(file);
 setFileName(file.name)
       setErrorMessage('');
-setUploading('selected')
+setStatus('selected')
 
     }
   };
 
  const handleUploading=async (e)=>{
 e.preventDefault()
-setUploading('uploading')
+setStatus('uploading')
 try{
 
     const response = await uploadImage({fileName,image:value})
 
     if(response.success){
+setStatus('fixed')
 action(`https://api.katib.in/uploads/${response.name}`)
 setFileName(response.name)
 alert(response.success)
-setUploading('not-selected')
+
 }else{ 
 alert(`uploading failed, ${response.error}`)
-setUploading('selected')
+setStatus('selected')
 }
 }
 catch(error){
 console.log(error)
 alert('Uploading failed..!')
-setUploading('selected')
+setStatus('selected')
 }
 }
 
@@ -80,9 +76,9 @@ setUploading('selected')
               />
             )}
             <label htmlFor={id}>{label}:</label>
-{uploading==='selected' || value!==''  ?(
+{status==='selected' || value!==''  ?(
               <img
-                src={uploading==='selected' ?URL.createObjectURL(value):value}
+                src={status==='selected' || status==='uploading'?URL.createObjectURL(value):value}
                 className="text-red-500 rounded w-full"
                 alt="Try with another"
               />
@@ -96,30 +92,33 @@ setUploading('selected')
           value={fileName}
           onChange={(e)=>setFileName(e.target.value)}
 disabled={state}
-disabled={uploading==='selected' ? false : true}
+disabled={status==='selected' ? false : true}
         />
 <div className="flex justify-between w-full gap-4">
 <button onClick={()=>{
 document.body.style.overflow = "hidden";
 setGallery(true)
 }} className="upload bg-red-500"
-disabled={uploading==='uploading' ? true : false}
+disabled={status==='uploading' ? true : false}
 >Gallery</button>
-        <button className={`upload ${uploading==='selected' ? 'bg-green-500' : uploading==='uploading' ? 'bg-zinc-500' : 'bg-blue-500'}`} 
-disabled={uploading==='uploading' ? true : false} onClick={uploading === 'selected' ? handleUploading : handleOpenFileDialog}>{uploading==='selected' ? 'Upload' : uploading==="uploading" ? 'uploading' : 'Browse'}</button>
+        <button className={`upload bg-blue-500`} 
+disabled={status==='uploading' ? true : false} onClick={handleOpenFileDialog}>Browse</button>
 </div>
         <input
           type="file"
-          accept="*"
+          accept="image/jpeg image/jpg"
           ref={fileInputRef}
            onChange={handleFileChange}
-accept="image/*"
+
 disabled={state}
         />
+{status!=='not-selected' && status!=='fixed' && <button className={`upload bg-green-500 ${status==='uploading' && 'bg-zinc-500'}`}
+disabled={status==='uploading' ? true : false} onClick={handleUploading}
+>{status==='selected'? 'Upload' :'Uploading'}</button>}
       </div>
 
     </div>
-            {gallery && <ImageGallery setGallery={setGallery} action={valueChange}/>}
+            {gallery && <ImageGallery setGallery={setGallery} action={valueChange} setStatus={setStatus} seo={seo}/>}
           </div>
  
   );
