@@ -56,7 +56,7 @@ return(
 document.body.style.overflow = "hidden";
 setImage(obj)
 }}>
-        <img className="flex align-center text-center text-kred-500 rounded-md h-full" src={`https://api.katib.in/uploads/${obj.name}`}   alt="Image not found..!"/>
+        <img className="flex align-center text-center text-kred-500 rounded-md h-full" src={`https://arabic-api.katib.in/uploads/${obj.name}`}   alt="Image not found..!"/>
 
    
        </div>
@@ -76,7 +76,7 @@ document.body.style.overflow = "";
 <div className="flex flex-col md:flex-row h-full rounded-b bg-black gap-1 p-1">
 <div className="w-full md:w-2/3  rounded bg-white">
 
-         <img className="h-full w-full" src={`https://api.katib.in/uploads/${image.name}`} />
+         <img className="h-full w-full" src={`https://arabic-api.katib.in/uploads/${image.name}`} />
            </div>
 <div className="w-full  p-3 md:w-1/3 md:h-full  bg-white flex flex-col justify-between">
 <div>
@@ -85,7 +85,7 @@ document.body.style.overflow = "";
 
 </div>
 <div className="">
-<label>Image link:</label> <div className="relative border-2 border-gray-600 rounded flex img-link"> <input id="input" style={{padding:"4px",width:"100%",border:"0"}} type="text" value={`https://api.katib.in/uploads/${image.name}`} disabled/>
+<label>Image link:</label> <div className="relative border-2 border-gray-600 rounded flex img-link"> <input id="input" style={{padding:"4px",width:"100%",border:"0"}} type="text" value={`https://arabic-api.katib.in/uploads/${image.name}`} disabled/>
 <button title="copy" className="p-1 hover:text-black block ml-auto rounded hidden" onClick={copyLink}><AiTwotoneCopy className="text-kteal-800"/></button>
 <TiTick id="tick" className="text-2xl text-gray-600 bg-white rounded-full hidden absolute right-0"/>
 </div>

@@ -15,7 +15,7 @@ try{
 const response=await getUploads()
 if(response && response.success){
 setImages(response.images)
-
+console.log(response)
 }else{
 alert("Images not collected")
 

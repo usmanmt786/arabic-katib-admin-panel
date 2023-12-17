@@ -40,9 +40,9 @@ try{
 
     const response = await uploadImage({fileName,image:value})
 
-    if(response.success){
+    if(response?.success){
 setStatus('fixed')
-action(`https://api.katib.in/uploads/${response.name}`)
+action(`https://arabic-api.katib.in/uploads/${response.name}`)
 setFileName(response.name)
 alert(response.success)
 

@@ -51,7 +51,7 @@ setGallery(false)
 setSelected(image)
 }}>
 {selected.name===image.name&&<TiTick className="bg-blue-400 text-white rounded-full absolute top-0 right-0"/>}
-<img className="w-full h-full"src={`https://api.katib.in/uploads/${image.name}`} />
+<img className="w-full h-full"src={`https://arabic-api.katib.in/uploads/${image.name}`} />
 </div>
 ))}
 </div>
@@ -71,7 +71,7 @@ setSelected(image)
 <button className={`px-3 py-2 text-zinc-100 rounded rubik font-semibold w-1/2 ${Object.keys(selected).length !== 0 ? 'bg-green-500 hover:bg-green-600' : 'bg-zinc-600'}`}
 disabled={Object.keys(selected).length !== 0 ? false :true}
 onClick={()=>{
-action(`https://api.katib.in/uploads/${selected.name}`,selected.name)
+action(`https://arabic-api.katib.in/uploads/${selected.name}`,selected.name)
 document.body.style.overflow="scroll"
 setStatus('fixed')
 setGallery(false)

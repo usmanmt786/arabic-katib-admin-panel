@@ -9,7 +9,7 @@ export default function Home({data,allPosts}) {
 const posts=JSON.parse(allPosts)
 
   return (
-      <Layout title="KATIB - Admin">
+      <Layout title="مجلة الكاتب">
 <section className="flex">
 <SideNav activePage={1}/>
 <div className="w-full h-screen overflow-hidden p-2 flex flex-col gap-2">

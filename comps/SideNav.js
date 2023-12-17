@@ -34,7 +34,7 @@ return (
 src="/img/cropped-logo.jpg" 
 className="rounded-full bg-zinc-100 p-1 shadow-md w-8 md:w-12"
 />
-<h1 className="font-semibold text-zinc-100 text-2xl play hidden md:inline">KATIB</h1>
+<h1 className="font-semibold text-zinc-100 text-2xl play hidden md:inline">مجلة الكاتب</h1>
 <h3 className="font-semibold text-zinc-100 text-md hidden md:inline">Admin Panel</h3>
 </div>
 </Link>

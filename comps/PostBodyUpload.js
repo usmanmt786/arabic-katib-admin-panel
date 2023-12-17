@@ -46,7 +46,7 @@ try{
 
     if(response.success){
  setStatus('fixed')
-valueChange(`https://api.katib.in/uploads/${response.name}`,response.name)
+valueChange(`https://arabic-api.katib.in/uploads/${response.name}`,response.name)
 
 alert(response.success)
 

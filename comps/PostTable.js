@@ -48,7 +48,7 @@ setOPtionStatus()
 >
             <td className="text-center">{index+1}</td>
             <td className="text-center">{obj.post_id}</td>
-            <td className="noto">{obj.post_title}
+            <td className="naksh">{obj.post_title}
 {optionStatus==index && <div className="text-sm mt-2" style={{color:'blue'}}>
 <Link href={`/posts/edit/${obj.post_link}`} >Edit Post</Link> | <a className="hover:underline cursor-pointer" onClick={async()=>{
 let answer = confirm(`Are you sure to delete ${obj.post_title}`)
@@ -74,11 +74,11 @@ setFeatureCount(result.data.filter((item)=>item.post_is_featured==1).length)
 alert('Post deletion failed')
 }}
 }}
->Delete Post</a> | <Link href={`https://katib.in/${obj.post_link}`} legacyBehavior><a target="_blank">View Post</a></Link>
+>Delete Post</a> | <Link href={`https://ar.katib.in/${obj.post_link}`} legacyBehavior><a target="_blank">View Post</a></Link>
 </div>}
 
 </td>
-            <td className="noto">{obj.author_name}</td>
+            <td className="naksh">{obj.author_name}</td>
             <td className="text-center">{obj.post_type}</td>
             <td>{obj.cat_name}</td>
             <td className="text-center">{obj.post_addedOn}</td>
