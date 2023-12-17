@@ -106,7 +106,7 @@ setValidation()
 }
   return (
 
-                  <div className="flex-grow flex flex-col gap-1 relative ">
+                  <div className="flex-grow flex flex-col gap-1 relative " >
             {error && (
               <span
                 style={{ left: "5.3rem", zIndex: "1" }}
@@ -141,7 +141,7 @@ disabled={state}
 </div>
             <div
               id="body"
-              
+              dir="rtl"
               className={`border-2 rounded  focus:z-10 sm:text-sm focus:border-blue-400 border-gray-300 pt-6 p-2   text-lg noto  w-full h-screen md:h-full  overflow-auto ${active &&  'active' } ${save && 'px-10'} relative`}
 onMouseOver={()=>setAdd(true)}             
               

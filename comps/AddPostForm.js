@@ -71,7 +71,7 @@ return {error:"Post adding failed, try again..!"}
 
 }
 return(
-<div className="overflow-hidden flex flex-col">
+<div className="overflow-hidden flex flex-col" >
  <div className="bg-gray-200 text-kteal-800 w-full h-full overflow-auto p-2 rounded-md shadow-md mx-auto my-2 md:flex   md:gap-1">
         <div className="flex flex-col  overflow-y-scroll  bg-white rounded p-2 shadow-md min-h-full h-auto gap-1 w-full md:w-9/12 overflow-auto">
 
@@ -92,9 +92,10 @@ return(
             )}
             <label htmlFor="title">Post title:</label>
             <textarea
+            dir="rtl"
               id="title"
               style={{ resize: "none" }}
-              className="  block text-3xl font-semibold noto  w-full  overflow-auto"
+              className="  block text-3xl font-semibold naksh  w-full  overflow-auto"
               placeholder="Add title"
               onChange={(e) => {
                 setTitle(e.target.value);

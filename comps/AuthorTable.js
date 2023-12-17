@@ -50,7 +50,7 @@ setOPtionStatus()
             <td className="text-center">{obj.author_id}</td>
             <td className="md:pl-20 noto">{obj.author_name}
 {optionStatus==index && <div className="text-sm mt-2" style={{color:'blue'}}>
-<Link href={`/authors/edit/${obj.author_id}`}>Edit Author</Link> | <Link href="#">View Author</Link>
+<Link href={`/authors/edit/${obj.author_id}`}>Edit Author</Link> | <Link href={`https://ar.katib.in/author/${obj.author_id}`}>View Author</Link>
 </div>}
 
 </td>
