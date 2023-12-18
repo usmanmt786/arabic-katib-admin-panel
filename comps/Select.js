@@ -2,7 +2,7 @@ import React from 'react'
 import { VscTriangleDown} from "react-icons/vsc";
 
 function Select({label,error,authors,value,action,state,id,setValidation}) {
-const postTypes=[{name:'Post',value:'post'},{name:'Fiction',value:'fiction'},{name:'Podcast',value:'podcast'}]
+const postTypes=[{name:'Post',value:'post'},{name:'News',value:'news'},]
   return (
    
  <div className="flex gap-3 relative">
