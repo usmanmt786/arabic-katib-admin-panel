@@ -17,7 +17,7 @@ errors.body=blankMsg
 if(formData.type==''){
 errors.type=selectMsg
 }
-if(formData.author==''){
+if(formData.type!=='news' && formData.author==''){
 errors.author=selectMsg
 }
 if(formData.thumb===''){

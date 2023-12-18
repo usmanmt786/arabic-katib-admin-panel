@@ -114,10 +114,10 @@ value={title}
           <hr />
           
          <Select label='Post type' error={errors.type} value={type} action={setType} state={state} id="postType" setValidation={setValidation}/>
-          <Select label='Author' error={errors.author} value={author} action={setAuthor} state={state} authors={authors} id="author" setValidation={setValidation}/>
+         {type!=='news'&&<Select label='Author' error={errors.author} value={author} action={setAuthor} state={state} authors={authors} id="author" setValidation={setValidation}/>}
           
-<MultipleSelect label='Category' content={categories} value={category} action={setCategory} id="category"  setValidation={setValidation} type="cat"/>
-<CheckBox label="Feature" value={feature} action={setFeature} state={state} id="feature" setValidation={setValidation} />
+         {type!=='news' && <MultipleSelect label='Category' content={categories} value={category} action={setCategory} id="category"  setValidation={setValidation} type="cat"/>}
+{type!=='news' &&<CheckBox label="Feature" value={feature} action={setFeature} state={state} id="feature" setValidation={setValidation} />}
          
 <Input label="Post Link" id="postLink" error={errors.postLink} value={postLink} action={setPostLink} state={state} span="5.1rem" trngle="4.4rem" setValidation={setValidation}/>
          <FileUpload label="Thumbnail" id="thumbnail" error={errors.thumb} value={thumb} action={setThumb} state={state} span="5.7rem" trngle="5.1rem"  setValidation={setValidation}/>

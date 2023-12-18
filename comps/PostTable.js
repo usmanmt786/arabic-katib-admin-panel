@@ -82,7 +82,7 @@ alert('Post deletion failed')
             <td className="text-center">{obj.post_type}</td>
             <td>{obj.cat_name}</td>
             <td className="text-center">{obj.post_addedOn}</td>
-<td className="text-center">{obj.post_is_featured==1 ? <button title="Click to 'Unfeature'" className="status-button featured" onClick={async()=>{
+{obj.post_type!=='news' ? <td className="text-center">{obj.post_is_featured==1 ? <button title="Click to 'Unfeature'" className="status-button featured" onClick={async()=>{
 let agree=confirm(`Are you sure to unfeature ${obj.post_title}` )
 if(agree){
 setLoading(true)
@@ -136,7 +136,7 @@ alert('Action failed..!')
 }
 
 }
-}} disabled={featureCount>=3 ? "disabled" : ''}>Not Featured</button>}</td>
+}} disabled={featureCount>=3 ? "disabled" : ''}>Not Featured</button>}</td> : <td></td>}
           </tr>))}
         
         </tbody>
