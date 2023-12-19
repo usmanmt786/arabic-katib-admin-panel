@@ -74,7 +74,7 @@ setFeatureCount(result.data.filter((item)=>item.post_is_featured==1).length)
 alert('Post deletion failed')
 }}
 }}
->Delete Post</a> | <Link href={`https://ar.katib.in/${obj.post_link}`} legacyBehavior><a target="_blank">View Post</a></Link>
+>Delete Post</a> | <Link href={obj.post_type=='news' ? `https://ar.katib.in/news/${obj.post_link}` : `https://ar.katib.in/${obj.post_link}`} legacyBehavior><a target="_blank">View Post</a></Link>
 </div>}
 
 </td>
