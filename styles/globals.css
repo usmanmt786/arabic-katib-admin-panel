@@ -2,7 +2,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@100;200;300;400;500;600;700&display=swap"); 
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -36,6 +37,9 @@ body {
 }
 .naksh{
   font-family: 'Noto Naskh Arabic', serif;
+}
+.alex{
+  font-family: 'Alexandria', sans-serif;
 }
 .rubik{
 font-family: 'Rubik', sans-serif;

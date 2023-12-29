@@ -11,7 +11,7 @@ return(
         <link rel="icon" href="/img/cropped-logo.jpg" />
       </Head>
 <ToastContainer position="bottom-center" limit={1}/>
-<main className="flex min-h-screen flex-col bg-zinc-100 overflow-scroll">
+<main className="flex min-h-screen flex-col bg-zinc-100 overflow-x-hidden">
 {children}
 </main>
 </>
