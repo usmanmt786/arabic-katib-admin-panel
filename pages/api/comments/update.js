@@ -4,11 +4,12 @@ const handler = async (req, res) => {
   if (req.method !== "POST") {
     return;
   }
-  const { postId } = req.body;
+  const { commentId,approve } = req.body;
+  const query=approve!=null ? `UPDATE comments SET comment_isApproved=${approve} WHERE comment_id=${commentId}`:`DELETE FROM comments WHERE comment_id=${commentId}`
   try {
     const result = await excuteQuery({
-      query: "DELETE FROM posts WHERE post_id=?",
-      values: [postId],
+      query: query
+      
     });
 
     if (result) {
